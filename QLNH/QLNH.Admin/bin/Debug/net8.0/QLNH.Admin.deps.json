@@ -2538,10 +2538,7 @@
           "Microsoft.Extensions.Configuration.Json": "8.0.0"
         },
         "runtime": {
-          "QLNH.Data.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "QLNH.Data.dll": {}
         },
         "compile": {
           "QLNH.Data.dll": {}

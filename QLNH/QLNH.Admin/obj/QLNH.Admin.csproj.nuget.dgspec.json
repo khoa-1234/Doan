@@ -1,26 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj": {}
+    "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj": {
+    "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
+        "projectUniqueName": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
         "projectName": "QLNH.Admin",
-        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
-        "packagesPath": "C:\\Users\\Khoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Admin\\obj\\",
+        "projectPath": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
+        "packagesPath": "C:\\Users\\phi16\\.nuget\\packages\\",
+        "outputPath": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Khoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\phi16\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -36,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
-                "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj"
+              "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
+                "projectPath": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj"
               }
             }
           }
@@ -97,27 +90,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
+    "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
+        "projectUniqueName": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
         "projectName": "QLNH.Data",
-        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
-        "packagesPath": "C:\\Users\\Khoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\obj\\",
+        "projectPath": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
+        "packagesPath": "C:\\Users\\phi16\\.nuget\\packages\\",
+        "outputPath": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Khoa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\phi16\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -125,7 +112,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -199,7 +185,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

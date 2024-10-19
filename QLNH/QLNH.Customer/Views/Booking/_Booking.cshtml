@@ -1,379 +1,573 @@
-﻿@{
-    // Có thể thêm các khai báo khác tại đây
-}
-<
+﻿<script src="~/vendor/aos/aos.js"></script>
+<link href="~/vendor/aos/aos.css" rel="stylesheet">
+<link href="/css/style_booking.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-<section id="book-a-table" class="book-a-table section">
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>ĐẶT BÀN</h2>
-        <p>Đặt một bàn</p>
-    </div><!-- End Section Title -->
-
+<!-- Nút Đặt Bàn -->
+<!-- Form Đặt Bàn -->
+<!-- Nút Đặt Bàn -->
+<!-- Form Đặt Bàn -->
+<section id="book-a-table" class="book-a-table section p-5">
     <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <form  method="post" role="form" id="booking-form" class="php-email-form">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Tên của bạn" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email của bạn" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <input type="text" class="form-control" name="phone" id="phone" placeholder="Số điện thoại" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <input type="date" name="date" class="form-control" id="date" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <input type="time" class="form-control" name="time" id="time" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <input type="number" class="form-control" name="people" id="people" placeholder="# người" >
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <select id="khu-vuc-select" class="form-control" >
-                        <option value="">Chọn khu vực</option>
-                    </select>
-                </div>
-                <!-- Danh sách món đã chọn -->
-                <ul id="selected-items-list" class="list-group mt-3">
-                    <!-- Danh sách món đã chọn sẽ được chèn vào đây -->
-                </ul>
+        <h2 class="text-center mb-4">Đặt Bàn Ngay</h2>
+        <p class="text-center text-white-50">Vui lòng điền thông tin của bạn, chúng tôi sẽ liên hệ lại ngay!</p>
+
+        <!-- Thông báo lỗi, ẩn mặc định -->
+        <div id="error-message-area" class="text-center text-danger" style="display:none;"></div>
+
+        <form method="post" role="form" id="booking-form" class="php-email-form row g-4">
+            <div class="col-lg-6 col-md-6">
+                <label for="phone" class="form-label text-white">Số Điện Thoại</label>
+                <input type="text" class="form-control form-control-lg animated-input" name="phone" id="phone" placeholder="Nhập số điện thoại của bạn" required>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="name" class="form-label text-white">Họ Tên</label>
+                <input type="text" name="name" class="form-control form-control-lg animated-input" id="name" placeholder="Nhập họ tên của bạn" disabled>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="email" class="form-label text-white">Email</label>
+                <input type="email" class="form-control form-control-lg animated-input" name="email" id="email" placeholder="Nhập email của bạn" disabled>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="diachi" class="form-label text-white">Địa Chỉ</label>
+                <input type="text" class="form-control form-control-lg animated-input" name="diachi" id="diachi" placeholder="Nhập địa chỉ của bạn" disabled>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="date" class="form-label text-white">Chọn Ngày</label>
+                <input type="date" name="date" class="form-control form-control-lg animated-input" id="date">
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="time" class="form-label text-white">Chọn Giờ</label>
+                <input type="time" class="form-control form-control-lg animated-input" name="time" id="time">
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="people" class="form-label text-white">Số Người</label>
+                <input type="number" class="form-control form-control-lg animated-input" name="people" id="people" placeholder="Nhập số người">
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <label for="khu-vuc-select" class="form-label text-white">Chọn Khu Vực</label>
+                <select id="khu-vuc-select" class="form-control form-control-lg animated-input">
+                    <option value="">Chọn khu vực</option>
+                </select>
+            </div>
+            <!-- Selected Table Details (displayed dynamically) -->
+            <div class="col-lg-6 col-md-6" id="selectedTableDetails" style="display:none;">
+                <label class="form-label text-white">Bàn Đã Chọn</label>
+                <input type="text" class="form-control form-control-lg animated-input" id="selectedTableNumber" readonly>
+            </div>
+            <div class="col-lg-6 col-md-6" id="selectedTableSeatsContainer" style="display:none;">
+                <label class="form-label text-white">Số Ghế</label>
+                <input type="text" class="form-control form-control-lg animated-input" id="selectedTableSeats" readonly>
             </div>
 
-            <div class="form-group mt-3">
-                <textarea class="form-control" name="ghichu" id="ghichu" rows="5" placeholder="Thông điệp"></textarea>
+            <!-- Modal hiển thị sơ đồ các bàn -->
+            <div id="tableLayoutModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2 id="modalTitle">Sơ đồ khu vực</h2>
+
+                    <!-- Bộ lọc theo ngày và trạng thái bàn -->
+                    <div class="row mb-4">
+                        <div class="col-lg-4 col-md-4">
+                            <label for="filterDate" class="form-label">Chọn Ngày</label>
+                            <input type="date" id="filterDate" class="form-control form-control-lg" required />
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <label for="filterStatus" class="form-label">Trạng Thái Bàn</label>
+                            <select id="filterStatus" class="form-control form-control-lg">
+                                <option value="">Tất cả</option>
+                                <option value="Trống">Trống</option>
+                                <option value="Đã Đặt">Đã Đặt</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <button id="filterButton" class="btn btn-gradient btn-lg">Tìm Bàn</button>
+                        </div>
+                    </div>
+
+                    <!-- Sơ đồ các khu vực -->
+                    <div id="tableLayout" class="table-layout">
+                        <div id="khuVucA" class="khu-vuc">Khu Vực A</div>
+                        <div id="nhaBep" class="bep-area">Nhà Bếp</div>
+                        <div id="banCong" class="ban-cong">Ban Công</div>
+                    </div>
+
+                    <div class="table-legend">
+                        <p>
+                            <span class="legend-item" style="background-color: #ffeb3b;"></span> Bàn trống
+                        </p>
+                        <p>
+                            <span class="legend-item" style="background-color: #f44336;"></span> Bàn đã đặt
+                        </p>
+                    </div>
+                    <!-- Nút đặt bàn -->
+                    <div id="tableInfo">
+                        <p id="selectedTableInfo"></p>
+                        <button id="bookTableButton" class="btn btn-gradient btn-lg" style="display:none;">Đặt Bàn</button>
+                    </div>
+                </div>
             </div>
 
-            <div class="text-center mt-3">
-                <div class="loading">Đang tải</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Yêu cầu đặt bàn của bạn đã được gửi. Chúng tôi sẽ gọi lại hoặc gửi email để xác nhận. Cảm ơn bạn!</div>
+            <div class="col-lg-12 col-md-12">
+                <label class="form-label text-white">Bạn có muốn đặt món trước?</label><br>
+                <input type="radio" id="preOrderYes" name="preOrder" value="yes">
+                <label for="preOrderYes" class="text-white">Có</label><br>
+                <input type="radio" id="preOrderNo" name="preOrder" value="no" checked>
+                <label for="preOrderNo" class="text-white">Không</label>
+            </div>
 
-                <button type="button" id="order-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#menuModal">Đặt Món</button> <!-- Nút Đặt Món -->
-                <button type="submit" class="btn btn-success" id="submit-button">Đặt Bàn</button>
+            <div id="foodMenuPopup" class="food-menu-popup">
+                <div class="food-menu-popup-content">
+                    <span class="food-menu-popup-close" id="closeFoodMenuPopup">&times;</span>
+                    <h2>Chọn Món Ăn</h2>
+
+                    <!-- Left: Menu Categories -->
+                    <div class="menu-categories">
+                        <ul id="foodCategoryList" class="menu-category-list"></ul>
+                    </div>
+
+                    <!-- Right: Food Items Display -->
+                    <div class="menu-items-display">
+                        <ul id="foodItemsList" class="food-items-list"></ul>
+                    </div>
+
+                    <!-- Right: Cart Summary -->
+                    <div class="food-cart-summary">
+                        <h4>Giỏ Hàng</h4>
+                        <ul id="foodCartList"></ul>
+                        <p><strong>Tổng Cộng: </strong><span id="foodTotalPrice">0</span> VND</p>
+                    </div>
+
+                    <button id="addToCartButton" class="food-btn btn-lg">Thêm Vào Giỏ</button>
+                </div>
+            </div>
+
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-gradient btn-lg px-5">Đặt Bàn Ngay</button>
             </div>
         </form>
-            <div id="otp-container" style="display: none;">
-                <h3>Nhập Mã OTP</h3>
-                <input type="text" id="otp" placeholder="Nhập mã OTP" required />
-                <button type="submit" id="confirm-otp" class="btn btn-primary">Xác Nhận</button>
-                <div id="otp-message"></div>
-            </div>
-       <!-- End Reservation Form -->
-        <!-- Modal for Menu Items -->
-        <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="menuModalLabel">Chọn Món</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <ul id="menu-list" class="list-group">
-                            <!-- Danh sách món ăn sẽ được thêm vào đây -->
-                        </ul>
-                        <h5>Món đã chọn:</h5>
-                        <ul id="selected-items-list" class="list-group"></ul>
-
-                            <!-- Danh sách món đã chọn sẽ được thêm vào đây -->
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
     </div>
 </section>
+
+
+<!-- Robot -->
+<div class="robot-container" id="robot" style="display: none;">
+    <div class="robot-body">
+        <div class="robot-head">
+            <div class="robot-eye"></div>
+            <div class="robot-eye right"></div>
+            <div class="robot-mouth"></div>
+        </div>
+        <div class="robot-arm"></div>
+        <div class="robot-arm right"></div>
+        <div class="robot-leg"></div>
+        <div class="robot-leg right"></div>
+    </div>
+</div>
+
+<!-- JS Logic -->
 <script>
-    const selectedItems = [];
-    document.addEventListener("DOMContentLoaded", async function () {
-        const imageBaseUrl = '@ViewBag.ImageBaseUrl'; // Lấy giá trị từ ViewBag
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookTableButton = document.getElementById("btn-book-a-table");
+        const robot = document.getElementById("robot");
 
-        try {
-            const response = await fetch('/Booking/GetKhuVuc');
-            if (!response.ok) {
-                throw new Error("Lỗi khi tải danh sách khu vực. Vui lòng thử lại sau.");
+        // Hàm hiển thị robot và chữ Xin chào
+        function showRobot() {
+            robot.style.display = "block"; // Hiển thị robot
+
+            // Thêm chữ Xin chào nếu chưa có
+            if (!robot.querySelector('.robot-greeting')) {
+                const greeting = document.createElement('div');
+                greeting.className = 'robot-greeting';
+                greeting.textContent = 'Xin chào!';
+                robot.appendChild(greeting);
             }
 
-            const khuVucList = await response.json();
-
-            // Kiểm tra nếu khu vực trả về rỗng
-            if (khuVucList.length === 0) {
-                throw new Error("Không có khu vực nào khả dụng.");
-            }
-
-            const selectElement = document.getElementById("khu-vuc-select");
-
-            // Xóa các tùy chọn hiện tại (tránh trường hợp bị nhân đôi dữ liệu)
-            selectElement.innerHTML = '<option value="">Chọn khu vực</option>';
-
-            // Thêm các khu vực vào dropdown
-            khuVucList.forEach(khuVuc => {
-                const option = document.createElement("option");
-                option.value = khuVuc.khuVucId;
-                option.textContent = khuVuc.tenKhuVuc;
-                selectElement.appendChild(option);
-            });
-
-            // Lắng nghe sự kiện thay đổi trên dropdown
-            selectElement.addEventListener("change", function () {
-                const selectedId = this.value; // Lấy giá trị của khu vực đã chọn
-                if (selectedId) {
-                    console.log("ID khu vực đã chọn:", selectedId);
-                    // Thực hiện các hành động khác với ID khu vực nếu cần
-                } else {
-                    console.log("Chưa chọn khu vực.");
-                }
-            });
-        } catch (error) {
-            console.error("Lỗi khi tải khu vực:", error);
-            alert(error.message);
+            // Sau 3 giây, ẩn robot và lời chào
+            setTimeout(function () {
+                robot.style.display = "none";
+            }, 3000);
         }
 
-        // Xử lý sự kiện cho nút Đặt Món
-        const orderButton = document.getElementById("order-button");
-        orderButton.addEventListener("click", async function () {
-            try {
-                const response = await fetch('@Url.Action("GetMenuItems", "Booking")');
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                const menuItems = await response.json();
+        // Khi người dùng nhấn vào nút "Đặt Bàn"
+        bookTableButton.addEventListener("click", function (e) {
+            e.preventDefault(); // Ngăn chặn điều hướng mặc định của nút
 
-                const menuList = document.getElementById("menu-list");
-                menuList.innerHTML = '';
-                menuItems.forEach(item => {
-                    const li = document.createElement("li");
-                    li.classList.add("list-group-item");
-                    li.innerHTML = `
-                            <div class="d-flex align-items-center border rounded p-2 mb-3" style="background-color: #f8f9fa;">
-                                <img src="${imageBaseUrl}${item.hinhAnhDaiDien}" class="menu-img" alt="${item.tenMonAn}" style="width: 50px; height: 50px; margin-right: 15px; border-radius: 5px;">
-                                <div class="flex-grow-1">
-                                    <h5 class="text-primary">${item.tenMonAn}</h5>
-                                    <p class="text-muted">${item.moTa}</p>
-                                    <p><strong class="text-success">Giá: ${item.gia} VNĐ</strong></p>
-                                
-                                </div>
-                                <div class="input-group mb-3" style="width: 120px;">
-                                    <input type="number" class="form-control" min="1" value="1" id="quantity-${item.monAnId}" aria-label="Số lượng" />
-                                    <button class="btn btn-primary select-item" data-mon-an-id="${item.monAnId}" data-name="${item.tenMonAn}" data-description="${item.moTa}" data-price="${item.gia}">Chọn</button>
-                                </div>
-                            </div>
-                        `;
-                    menuList.appendChild(li);
-                });
-
-                // Hiển thị modal
-                const menuModal = new bootstrap.Modal(document.getElementById('menuModal'));
-                menuModal.show();
-
-                // Xóa backdrop nếu nó còn tồn tại khi modal được ẩn
-                const modalElement = document.getElementById('menuModal');
-                modalElement.addEventListener('hidden.bs.modal', function () {
-                    const backdrop = document.querySelector('.modal-backdrop');
-                    if (backdrop) {
-                        backdrop.remove();
-                    }
-                });
-            } catch (error) {
-                console.error("Error fetching menu items:", error);
-                alert("Không thể tải menu. Vui lòng thử lại.");
-            }
+            // Hiển thị robot ngay khi nhấn nút "Đặt Bàn"
+            showRobot();
         });
 
-       
-        const menuList = document.getElementById("menu-list");
-
-        menuList.addEventListener("click", function (event) {
-            const selectButton = event.target.closest('.select-item');
-            if (selectButton) {
-                const monAnId = selectButton.getAttribute("data-mon-an-id");
-                const itemName = selectButton.getAttribute("data-name");
-                const itemDescription = selectButton.getAttribute("data-description");
-                const itemPrice = selectButton.getAttribute("data-price");
-
-                const quantityInput = document.getElementById(`quantity-${monAnId}`);
-                const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-
-                const imgElement = selectButton.closest('.d-flex').querySelector("img");
-                const imageUrl = imgElement ? imgElement.src : '';
-
-                console.log("Selected Item:", {
-                    monAnId,
-                    itemName,
-                    itemDescription,
-                    itemPrice,
-                    quantity,
-                    imageUrl
-                });
-
-                selectedItems.push({
-                    monAnId,
-                    name: itemName,
-                    description: itemDescription,
-                    price: itemPrice,
-                    quantity,
-                    image: imageUrl
-                });
-
-                updateSelectedItems();
-            }
-        });
-
-        function updateSelectedItems() {
-            const selectedItemsList = document.getElementById("selected-items-list");
-            selectedItemsList.innerHTML = '';
-
-            let totalAmount = 0;
-
-            selectedItems.forEach(item => {
-                const li = document.createElement("li");
-                li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-
-                li.innerHTML = `
-                        <div class="d-flex align-items-center">
-                            <img src="${item.image}" class="menu-img" alt="${item.name}" style="width: 50px; height: 50px; margin-right: 15px; border-radius: 5px;">
-                            <div>
-                                <h5 class="mb-0">${item.name}</h5>
-                                <p class="mb-0 text-muted">${item.description}</p>
-                                <p class="mb-0"><strong class="text-success">Giá: ${item.price} VNĐ</strong></p>
-                                <p class="mb-0">Số lượng: <strong>${item.quantity}</strong></p>
-                            </div>
-                        </div>
-                        <button class="btn btn-danger btn-sm remove-item" data-mon-an-id="${item.monAnId}">Xóa</button>
-                    `;
-
-                selectedItemsList.appendChild(li);
-                totalAmount += item.price * item.quantity;
-            });
-
-            const totalLi = document.createElement("li");
-            totalLi.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
-            totalLi.innerHTML = `
-                    <strong>Tổng:</strong> <span class="text-success">${totalAmount} VNĐ</span>
-                `;
-            selectedItemsList.appendChild(totalLi);
-
-            const removeButtons = selectedItemsList.querySelectorAll(".remove-item");
-            removeButtons.forEach(button => {
-                button.addEventListener("click", function () {
-                    const monAnId = this.getAttribute("data-mon-an-id");
-                    const index = selectedItems.findIndex(item => item.monAnId == monAnId);
-                    if (index !== -1) {
-                        selectedItems.splice(index, 1);
-                        updateSelectedItems();
-                    }
-                });
-            });
+        // Kiểm tra trạng thái lưu trong sessionStorage khi tải trang
+        if (window.location.hash === "#book-a-table") {
+            // Hiển thị robot
+            showRobot();
         }
     });
-    function hideMenuModal() {
-        const modal = bootstrap.Modal.getInstance(document.getElementById('menuModal'));
-        if (modal) {
-            modal.hide();
-        }
-    }
+</script>
+<!-- JS for dynamic behavior -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const phoneInput = document.getElementById('phone');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const addressInput = document.getElementById('diachi');
+        const errorMessage = document.getElementById('error-message-area');
+
+        phoneInput.addEventListener('blur', async function () {
+            const phoneNumber = phoneInput.value.trim();
+            errorMessage.innerHTML = '';
+            errorMessage.style.display = 'none'; // Ẩn thông báo khi không có lỗi
+
+            if (phoneNumber === '') {
+                errorMessage.innerHTML = 'Vui lòng nhập số điện thoại của bạn.';
+                errorMessage.style.display = 'block'; // Hiển thị thông báo lỗi
+                return;
+            }
+
+            try {
+                const response = await fetch(`/Booking/GetCustomerByPhone?phoneNumber=${phoneNumber}`);
+                if (!response.ok) throw new Error('Lỗi API');
+                const data = await response.json();
+
+                if (data.isSuccess && data.data) {
+                    const customer = data.data;
+                    nameInput.value = customer.hoTen;
+                    emailInput.value = customer.email;
+                    addressInput.value = customer.diaChi || '';
+                    nameInput.disabled = false;
+                    emailInput.disabled = false;
+                    addressInput.disabled = false;
+                    errorMessage.style.display = 'none'; // Ẩn khi không có lỗi
+                } else {
+                    errorMessage.innerHTML = 'Không tìm thấy khách hàng. Vui lòng nhập thông tin thủ công.';
+                    errorMessage.style.display = 'block'; // Hiển thị khi có lỗi
+                    nameInput.disabled = false;
+                    emailInput.disabled = false;
+                    addressInput.disabled = false;
+                }
+            } catch (error) {
+                errorMessage.innerHTML = 'Lỗi khi tìm kiếm thông tin khách hàng.';
+                errorMessage.style.display = 'block'; // Hiển thị khi có lỗi
+            }
+        });
+    });
+
 </script>
 
+<!--Xử lí map khu vực-->
 <script>
-    document.getElementById("submit-button").addEventListener("click", async function (event) {
-        // Ẩn form đặt bàn
-       
-        event.preventDefault(); // Ngăn chặn form submit mặc định
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButton = document.getElementById("filterButton");
+        const khuVucSelect = document.getElementById("khu-vuc-select");
+        const filterDate = document.getElementById("filterDate");
+        const filterStatus = document.getElementById("filterStatus");
+        const errorMessage = document.getElementById("error-message-area");
+        const modal = document.getElementById("tableLayoutModal");
+        const layout = document.getElementById("tableLayout");
+        const modalTitle = document.getElementById("modalTitle");
+        const selectedTableInfo = document.getElementById("selectedTableInfo");
+        const bookTableButton = document.getElementById("bookTableButton");
 
-        console.log("Đã nhấn nút Đặt Bàn"); // Log để kiểm tra sự kiện
+        // Selected table elements
+        const selectedTableDetailsDiv = document.getElementById("selectedTableDetails");
+        const selectedTableSeatsContainer = document.getElementById("selectedTableSeatsContainer");
+        const selectedTableNumber = document.getElementById("selectedTableNumber");
+        const selectedTableSeats = document.getElementById("selectedTableSeats");
+        // Hàm lấy dữ liệu khu vực từ API
+        async function getKhuVuc() {
+            try {
+                const response = await fetch('/Booking/GetKhuVuc');
+                if (!response.ok) throw new Error('Lỗi khi lấy khu vực');
+                const data = await response.json();
+                populateKhuVucSelect(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
 
-        const email = document.getElementById("email").value;
-        const hoten = document.getElementById("name").value;
-        const khuVuc = document.getElementById("khu-vuc-select").value;
-        // Giả lập gửi mã OTP (thường bạn sẽ gọi API để gửi OTP)
-        document.getElementById('booking-form').style.display = 'none';
-        document.getElementById("otp-container").style.display = "block"; // Hiển thị form nhập OTP
-       
-        console.log(khuVuc); // Log để kiểm tra sự kiện
-        const response = await fetch('@Url.Action("Otp", "Booking")', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email: email, hoten: hoten })
+        // Đổ dữ liệu vào select khu vực
+        function populateKhuVucSelect(khuVucList) {
+            khuVucList.forEach(khuVuc => {
+                const option = document.createElement('option');
+                option.value = khuVuc.khuVucId;
+                option.textContent = khuVuc.tenKhuVuc;
+                khuVucSelect.appendChild(option);
+            });
+        }
+
+        // Khi chọn khu vực, cập nhật modal
+        khuVucSelect.addEventListener('change', function () {
+            const selectedKhuVuc = khuVucSelect.options[khuVucSelect.selectedIndex].text;  // Lấy tên khu vực được chọn
+            modalTitle.textContent = `Sơ đồ khu vực ${selectedKhuVuc}`;  // Cập nhật tiêu đề của modal
+            modal.style.display = "flex";  // Hiển thị modal khi chọn khu vực
         });
 
-        if (response.ok) {
-            alert('Mã OTP đã được gửi tới số điện thoại của bạn!');
-        } else {
-            const errorText = await response.text();
-            console.error("Lỗi khi gửi OTP:", errorText);
-            alert("Đã xảy ra lỗi khi gửi thông tin: " + errorText);
+        // Kiểm tra nút filterButton có tồn tại không
+        if (!filterButton) {
+            console.error("filterButton element not found");
+            return;
         }
-    });
 
-    // Đặt listener cho nút xác nhận OTP
-    document.getElementById("confirm-otp").addEventListener("click", async function () {
-        const otp = document.getElementById("otp").value;
+        async function filterTables() {
+            const khuVucId = khuVucSelect.value;  // Lấy giá trị của khu vực được chọn
+            const ngay = filterDate.value;
+            let trangThai = filterStatus.value;
 
-        // Lấy dữ liệu từ form
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const phone = document.getElementById("phone")?.value; // Kiểm tra có tồn tại không
-        const date = document.getElementById("date")?.value;
-        const time = document.getElementById("time")?.value;
-        const people = document.getElementById("people")?.value;
-        const khuVuc = document.getElementById("khu-vuc-select")?.value;
-        const ghichu = document.getElementById("ghichu")?.value;
+            // Nếu không có trạng thái nào được chọn, đặt trangThai thành "Tất cả"
+            if (!trangThai || trangThai === "") {
+                trangThai = "Tất cả";  // Đặt giá trị mặc định nếu không có trạng thái được chọn
+            }
+
+            // Kiểm tra nếu ngày hoặc khu vực không được chọn
+            if (!ngay || !khuVucId) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = "Vui lòng chọn đầy đủ thông tin!";
+                return; // Không tiếp tục nếu thiếu thông tin
+            }
+
+            try {
+                // Gọi API để lấy dữ liệu bàn theo khu vực, ngày và trạng thái
+                const response = await fetch(`/Booking/GetBanByKhuVucAndNgay?khuVucId=${khuVucId}&ngay=${ngay}&trangThai=${trangThai}`);
+                if (!response.ok) throw new Error('Lỗi khi lấy danh sách bàn');
+                const tables = await response.json();
+
+                if (tables && Array.isArray(tables)) {
+                    displayTables(tables); // Hiển thị danh sách bàn sau khi lấy về
+                } else {
+                    throw new Error('Dữ liệu trả về không hợp lệ');
+                }
+            } catch (error) {
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = "Đã có lỗi xảy ra khi tìm kiếm bàn.";
+                console.error(error);
+            }
+        }
 
 
-        // Tạo đối tượng dữ liệu để gửi, dùng mảng selectedItems đã có
-        const data = {
-            name,
-            email,
-            phone,
-            date,
-            time,
-            people,
-            khuVuc,
-            ghichu,
-            otp, // Thêm OTP vào dữ liệu
-            selectedItems // Thêm danh sách món ăn đã chọn vào dữ liệu
+        // Khi người dùng nhấn nút "Tìm Bàn"
+        filterButton.addEventListener("click", function (e) {
+            e.preventDefault(); // Ngăn chặn việc gửi form mặc định
+            filterTables(); // Gọi hàm để lọc bàn
+        });
+
+        function displayTables(tables) {
+            layout.innerHTML = '';  // Xóa layout cũ
+
+            // Hiển thị khu vực Bếp cho mọi khu vực
+            const bepDiv = document.createElement('div');
+            bepDiv.classList.add('bep-area');
+            bepDiv.textContent = 'Khu Vực Bếp';
+            layout.appendChild(bepDiv);
+
+            // Hiển thị khu vực A
+            const khuVucADiv = document.createElement('div');
+            khuVucADiv.classList.add('khu-vuc');
+            khuVucADiv.textContent = 'Khu Vực A';
+            layout.appendChild(khuVucADiv);
+
+            // Hiển thị Ban Công
+            const banCongDiv = document.createElement('div');
+            banCongDiv.classList.add('ban-cong');
+            banCongDiv.textContent = 'Ban Công';
+            layout.appendChild(banCongDiv);
+
+            // Hiển thị danh sách bàn trong khu vực trung tâm
+            const tableContainer = document.createElement('div');
+            tableContainer.classList.add('tables');
+
+            if (tables && tables.length > 0) {  // Kiểm tra xem danh sách bàn có tồn tại và không trống
+                tables.forEach(table => {
+                    const tableDiv = document.createElement('div');
+                    tableDiv.classList.add('table');
+
+                    if (table.trangThai.trim() === 'Đã đặt') {
+                        tableDiv.style.backgroundColor = '#f44336';
+                        tableDiv.style.color = '#fff';
+                    }
+
+                    tableDiv.innerHTML = `
+                            <p>Bàn: ${table.banId}</p>
+                            <p>Số ghế: ${table.ban.soGhe}</p>
+                        `;
+
+                    if (table.trangThai.trim() === 'Trống') {
+                        tableDiv.addEventListener('click', () => {
+                            const confirmSelection = confirm(`Bạn có muốn chọn bàn ${table.banId} không?`);
+
+                            if (confirmSelection) {
+                                selectedTableNumber.value = table.banId;
+                                selectedTableSeats.value = table.ban.soGhe;
+                                selectedTableDetailsDiv.style.display = "block";
+                                selectedTableSeatsContainer.style.display = "block";
+                                modal.style.display = "none";
+                            }
+                        });
+                    }
+
+                    tableContainer.appendChild(tableDiv);
+                });
+            } else {
+                const noTableDiv = document.createElement('div');
+                noTableDiv.classList.add('no-tables');
+                noTableDiv.textContent = 'Không có bàn nào được tìm thấy cho ngày và khu vực đã chọn.';
+                layout.appendChild(noTableDiv);
+            }
+
+            layout.appendChild(tableContainer);
+        }
+
+        // Đóng modal khi nhấn ra ngoài
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+        document.querySelector(".close").onclick = function () {
+            modal.style.display = "none";
         };
 
-        console.log(JSON.stringify(data)); // In ra để kiểm tra dữ liệu trước khi gửi
-        try {
-            const response = await fetch('/Booking/DatBan', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
-          
-            if (response.ok) {
-                // Xử lý thành công (có thể thông báo cho người dùng)
-                alert("Đặt bàn thành công!");
-                // Reset form hoặc thực hiện điều hướng
-                // Hiển thị thông báo thành công, hoặc thực hiện các bước tiếp theo
-                document.getElementById('otp-message').innerHTML = '<span style="color:green;">Xác nhận thành công!</span>';
-                // Reset lại form
-                document.getElementById('booking-form').reset();  // Reset form đặt bàn
-                document.getElementById('otp').value = '';  // Reset input OTP
+        // Gọi hàm khi trang load
+        getKhuVuc();
+    });
 
-                // Tạo thời gian trễ 3 giây trước khi điều hướng về trang chủ
-                setTimeout(function () {
-                    window.location.href = "/";  // Điều hướng về trang chủ sau 3 giây
-                }, 3000);  // Thời gian trễ là 3000 milliseconds (3 giây)
-               
-            } else {
-                const errorData = await response.json();
-                document.getElementById("otp-message").textContent = errorData.message || "Có lỗi xảy ra.";
+</script>
+
+<!--Xử lí món ăn-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const foodMenuPopup = document.getElementById('foodMenuPopup');
+        const closeFoodMenuPopup = document.getElementById('closeFoodMenuPopup');
+        const preOrderYes = document.getElementById('preOrderYes');
+        const preOrderNo = document.getElementById('preOrderNo');
+
+        // Hide modal by default
+        foodMenuPopup.style.display = 'none';
+
+        // Show modal on "Có" selection
+        preOrderYes.addEventListener('click', function () {
+            foodMenuPopup.style.display = 'flex';
+            loadMenu(); // Load menu dynamically
+        });
+
+        // Hide modal on "Không" selection
+        preOrderNo.addEventListener('click', function () {
+            foodMenuPopup.style.display = 'none';
+        });
+
+        // Close modal when close button is clicked
+        closeFoodMenuPopup.addEventListener('click', function () {
+            foodMenuPopup.style.display = 'none';
+        });
+
+        // Load menu function
+        function loadMenu() {
+            console.log("Calling API /Booking/GetMenuWithSubGroups...");
+
+            fetch('/Booking/GetMenuWithSubGroups')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch menu data');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.length > 0) {
+                        console.log("Menu data:", data);
+                        renderCategories(data); // Render categories from API response
+                    } else {
+                        console.error('No menu data available.');
+                        document.getElementById('foodCategoryList').innerHTML = '<p>No menu data available.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('API Error:', error);
+                    document.getElementById('foodCategoryList').innerHTML = '<p>Failed to load menu. Please try again later.</p>';
+                });
+        }
+
+        // Function to render multi-level categories
+        function renderCategories(menuData) {
+            const foodCategoryList = document.getElementById('foodCategoryList');
+            foodCategoryList.innerHTML = ''; // Clear previous categories
+
+            menuData.forEach(category => {
+                const categoryItem = document.createElement('li');
+                categoryItem.textContent = category.tenNhom;
+                categoryItem.classList.add('menu-category-item');
+
+                // Render child categories if any
+                if (category.children && category.children.length > 0) {
+                    categoryItem.addEventListener('click', function (event) {
+                        event.stopPropagation(); // Stop event bubbling
+                        const isExpanded = categoryItem.classList.toggle('expanded');
+                        if (isExpanded) {
+                            renderSubCategories(categoryItem, category.children); // Render subcategories
+                        } else {
+                            // Collapse the subcategories
+                            const subCategoryList = categoryItem.querySelector('ul');
+                            if (subCategoryList) {
+                                subCategoryList.remove();
+                            }
+                        }
+                    });
+                }
+
+                foodCategoryList.appendChild(categoryItem);
+            });
+        }
+
+        // Function to render subcategories
+        function renderSubCategories(parentItem, subCategories) {
+            let subCategoryList = parentItem.querySelector('ul');
+
+            if (!subCategoryList) {
+                subCategoryList = document.createElement('ul');
+                subCategoryList.classList.add('sub-category-list');
+                parentItem.appendChild(subCategoryList);
             }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Có lỗi xảy ra, vui lòng thử lại!");
+
+            subCategoryList.innerHTML = ''; // Clear existing subcategories
+
+            subCategories.forEach(subCategory => {
+                const subCategoryItem = document.createElement('li');
+                subCategoryItem.textContent = subCategory.tenNhom;
+                subCategoryItem.classList.add('menu-category-item');
+
+                // Add event listener for subcategory
+                subCategoryItem.addEventListener('click', function (event) {
+                    event.stopPropagation(); // Stop event from bubbling up
+                    displayDishes(subCategory.dishes); // Display dishes for this subcategory
+                });
+
+                subCategoryList.appendChild(subCategoryItem);
+            });
+        }
+
+        // Function to display dishes when a category or subcategory is clicked
+        function displayDishes(dishes) {
+            const foodItemsList = document.getElementById('foodItemsList');
+            foodItemsList.innerHTML = ''; // Clear previous items
+
+            if (!dishes || dishes.length === 0) {
+                foodItemsList.innerHTML = '<p>No dishes available in this category.</p>';
+                return;
+            }
+
+            dishes.forEach(dish => {
+                const foodItem = document.createElement('li');
+                foodItem.innerHTML = `
+                    <img src="${dish.hinhAnh || 'default-image.jpg'}" alt="${dish.tenMonAn}" />
+                    <div>
+                        <h4>${dish.tenMonAn}</h4>
+                        <p>${dish.moTa}</p>
+                        <p>Price: ${dish.gia} VND</p>
+                        <input type="checkbox" name="dishes[]" value="${dish.monAnId}" data-price="${dish.gia}" data-name="${dish.tenMonAn}">
+                    </div>
+                `;
+                foodItemsList.appendChild(foodItem);
+            });
         }
     });
+
 </script>

@@ -1,0 +1,866 @@
+﻿
+/* Form fields */
+.form-control {
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Viền trắng nhẹ */
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen nhẹ */
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #ffcc00; /* Màu chữ vàng ánh kim cho nội dung người dùng nhập */
+    animation: slideFromLeft 1.2s ease-out forwards;
+    transition: all 0.3s ease;
+}
+
+    /* Khi người dùng nhập dữ liệu */
+    .form-control:not(:placeholder-shown) {
+        color: #ffcc00; /* Màu vàng ánh kim khi có dữ liệu */
+    }
+
+    /* Focus effect */
+    .form-control:focus {
+        border-color: #ffd700; /* Màu viền khi focus */
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Viền vàng ánh kim */
+        transform: scale(1.08);
+        color: #ffcc00; /* Màu chữ vàng khi có focus */
+    }
+
+/* Large input style */
+.form-control-lg {
+    padding: 20px;
+    font-size: 1.3rem;
+}
+.book-a-table .php-email-form input[type=text],
+.book-a-table .php-email-form input[type=email],
+.book-a-table .php-email-form input[type=number],
+.book-a-table .php-email-form input[type=date],
+.book-a-table .php-email-form input[type=time],
+.book-a-table .php-email-form textarea {
+    color: #ffcc00; /* Thay đổi thành màu chữ bạn muốn, ví dụ vàng ánh kim */
+}
+.book-a-table .php-email-form input[type=text],
+.book-a-table .php-email-form input[type=email],
+.book-a-table .php-email-form input[type=number],
+.book-a-table .php-email-form input[type=date],
+.book-a-table .php-email-form input[type=time],
+.book-a-table .php-email-form textarea {
+    background-color: #333; /* Thay đổi thành màu chữ bạn muốn, ví dụ vàng ánh kim */
+}
+
+
+/* Form Container */
+.book-a-table {
+    background: linear-gradient(135deg, #1c1c1c, #333333); /* Gradient đen sang trọng */
+    border-radius: 20px;
+    padding: 60px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); /* Shadow đậm hơn */
+    color: #fff; /* Màu chữ trắng */
+    overflow: hidden;
+    animation: formBounceIn 1.2s ease-out forwards;
+    position: relative;
+}
+/* Áp dụng font chữ Poppins cho toàn bộ form */
+#booking-form,
+#booking-form label,
+#booking-form input,
+#booking-form button,
+#booking-form select,
+#booking-form textarea {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem; /* Điều chỉnh kích thước chữ nếu cần */
+    color: #fff; /* Màu chữ */
+}
+
+    /* Tăng kích thước và thêm độ đậm cho tiêu đề */
+    #booking-form h2 {
+        font-size: 2.5rem;
+        font-weight: 600; /* Độ đậm của chữ */
+        color: #ffd700; /* Màu vàng ánh kim cho tiêu đề */
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Hiệu ứng chữ nổi */
+    }
+
+    /* Tùy chỉnh nhãn */
+    #booking-form label {
+        font-weight: 600;
+        font-size: 1.2rem; /* Điều chỉnh kích thước chữ cho nhãn */
+        color: #ffd700; /* Màu vàng ánh kim cho label */
+    }
+
+    /* Tùy chỉnh input, select, textarea */
+    #booking-form input,
+    #booking-form select,
+    #booking-form textarea {
+        background-color: #333; /* Màu nền đen nhẹ */
+        border: 2px solid rgba(255, 255, 255, 0.3); /* Viền trắng nhẹ */
+        padding: 15px;
+        font-size: 1.1rem;
+        color: #fffe00; /* Màu chữ */
+        border-radius: 12px;
+    }
+
+    /* Tùy chỉnh nút bấm */
+    #booking-form button {
+        font-size: 1.5rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #000; /* Màu chữ đen trên nền vàng */
+        background: linear-gradient(135deg, #ffd700, #ffcc00); /* Gradient vàng ánh kim */
+        border-radius: 50px;
+        padding: 15px 50px;
+        transition: all 0.4s ease;
+    }
+
+        /* Thêm hiệu ứng khi hover vào nút */
+        #booking-form button:hover {
+            background: linear-gradient(135deg, #ffcc00, #ffd700);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+        }
+
+    /* Tăng cường hiệu ứng chữ khi người dùng nhập */
+    #booking-form input:focus,
+    #booking-form select:focus,
+    #booking-form textarea:focus {
+        border-color: #ffd700; /* Màu viền khi focus */
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Hiệu ứng vàng ánh kim */
+        transform: scale(1.05);
+    }
+
+/* Headings */
+h2 {
+    color: #ffd700; /* Màu vàng ánh kim */
+    font-size: 2.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 0.8s ease;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Hiệu ứng chữ nổi */
+}
+
+p {
+    color: #b3b3b3; /* Màu xám nhạt nổi bật trên nền đen */
+    font-size: 1.2rem;
+    animation: fadeIn 1s ease;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #ffd700; /* Màu vàng ánh kim cho label */
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Hiệu ứng nổi bật */
+}
+
+/* Form fields */
+.form-control {
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Viền trắng nhẹ */
+    background-color: rgba(0, 0, 0, 0.5); /* Nền đen nhẹ */
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff; /* Màu chữ trắng */
+    animation: slideFromLeft 1.2s ease-out forwards;
+    transition: all 0.3s ease;
+}
+
+    /* Focus effect */
+    .form-control:focus {
+        border-color: #ffd700; /* Màu viền khi focus */
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); /* Viền vàng ánh kim */
+        transform: scale(1.08);
+    }
+
+/* Large input style */
+.form-control-lg {
+    padding: 20px;
+    font-size: 1.3rem;
+}
+
+/* Button styles */
+.btn-gradient {
+    background: linear-gradient(135deg, #ffd700, #ffcc00); /* Gradient vàng ánh kim */
+    border: none;
+    color: #000; /* Chữ đen nổi bật trên nền vàng */
+    font-size: 1.5rem;
+    padding: 15px 50px;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Shadow đậm */
+    animation: buttonBounce 1.5s ease infinite;
+    font-weight: bold;
+}
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #ffcc00, #ffd700);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+    }
+
+/* Error message */
+.text-danger {
+    background: rgba(255, 0, 0, 0.1);
+    color: #f44336;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes formBounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes buttonBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Robot styling */
+.robot-container {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 999;
+    display: none; /* Hidden by default */
+    animation: bounceIn 1s ease-out; /* Add bounce-in effect */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.robot-head {
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff; /* Đầu màu trắng */
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    position: absolute; /* Position the head above the body */
+    top: -50px; /* Float the head above the body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot-eye {
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.robot-mouth {
+    width: 40px;
+    height: 15px;
+    background-color: transparent;
+    border: 3px solid #333;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    left: calc(50% - 20px);
+    transform: rotate(0deg); /* Tạo hình cười */
+    border-color: transparent transparent #333 transparent;
+}
+
+.robot-body {
+    width: 120px;
+    height: 150px;
+    background: linear-gradient(to bottom, #ffffff 50%, #000000 50%); /* Phần trên màu trắng, dưới màu đen giống áo lễ tân */
+    border-radius: 30px; /* Hình thân bầu dục */
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px; /* Thêm padding cho phần thân */
+}
+
+.robot-arm {
+    width: 15px;
+    height: 60px;
+    background-color: #ffff; /* Cánh tay màu trắng */
+    border-radius: 5px;
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    transform-origin: top center;
+    animation: wave 2s infinite;
+}
+
+    .robot-arm.right {
+        left: auto;
+        right: -30px;
+        animation-delay: 1s;
+    }
+
+.robot-leg {
+    width: 20px;
+    height: 40px;
+    background-color: #ffff; /* Chân màu trắng */
+    border-radius: 8px;
+    position: absolute;
+    bottom: -20px;
+    left: 30px;
+}
+
+    .robot-leg.right {
+        left: 70px;
+    }
+
+/* Wave animation */
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0);
+    }
+
+    50% {
+        transform: rotate(15deg);
+    }
+}
+
+/* Bounce-in effect when the robot appears */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.robot-greeting {
+    position: absolute;
+    top: -80px; /* Đặt lời chào ở phía trên đầu robot */
+    left: 90%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: fadeInOut 4s infinite;
+}
+
+/* Greeting text fade-in/fade-out animation */
+@keyframes fadeInOut {
+    0%, 100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* xử lí map*/
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 80%;
+    margin: auto;
+    overflow-y: auto;
+    position: relative;
+}
+
+/* Close button styling */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Grid layout for the entire section */
+.table-layout {
+    display: grid;
+    grid-template-areas:
+        "bep bep bep"
+        "khu-a tables ban-cong";
+    grid-template-columns: 1fr 2fr 1fr; /* 1 part Khu Vuc A, 2 parts tables, 1 part Ban Cong */
+    grid-gap: 20px;
+    padding: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+/* Khu Vuc A Styling */
+.khu-vuc {
+    background-color: #ffc107;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 150px; /* Consistent height */
+    grid-area: khu-a;
+}
+
+.bep-area {
+    background-color: #ffb300;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 150px; /* Tăng kích thước chiều cao */
+    grid-area: bep;
+    cursor: pointer; /* Thêm con trỏ để dễ nhận biết là khu vực tương tác */
+}
+
+    .bep-area:hover {
+        background-color: #ff9800; /* Thay đổi màu khi hover */
+        transform: scale(1.05); /* Phóng to nhẹ khi rê chuột vào */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Hiệu ứng chuyển đổi */
+    }
+
+
+
+/* Ban Cong Styling */
+.ban-cong {
+    background-color: #ffcc00;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 150px;
+    grid-area: ban-cong;
+}
+
+
+/* Central grid area for tables */
+.tables {
+    grid-area: tables;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns of tables */
+    grid-gap: 25px;
+    justify-items: center;
+    padding: 20px;
+}
+
+/* Table styling */
+.table {
+    background-color: #ffeb3b;
+    padding: 15px; /* Increased padding */
+    border-radius: 8px;
+    cursor: pointer;
+    width: 140px; /* Adjusted width to accommodate both table and seat info */
+    height: 80px; /* Increased height to accommodate both table and seat info */
+    text-align: center;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space between table name and seat number */
+    align-items: center;
+}
+    /* Style the table name and number of seats together */
+    .table p {
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+    }
+
+        /* Make the "số ghế" visually distinct */
+        .table p:nth-child(2) {
+            font-size: 14px;
+            color: #ffffff; /* White text for the seat count */
+            background-color: #ff9800; /* Orange background for "số ghế" */
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            margin-top: 8px; /* Space between table name and seats */
+        }
+
+    /* Hover and selected table styles */
+    .table:hover {
+        background-color: #ffc107;
+        transform: scale(1.05);
+    }
+
+    .table.selected {
+        background-color: #4caf50;
+        color: white;
+    }
+
+/* Info section for selected table */
+#tableInfo {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+    #tableInfo p {
+        font-size: 16px;
+        font-weight: normal;
+        color: #555;
+    }
+
+#bookTableButton {
+    display: none;
+    background-color: #ff9800;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+/*Xử lí lọc*/
+/* Đặt Chọn Ngày, Trạng Thái Bàn và Nút Tìm Bàn trên cùng một hàng */
+.row.mb-4 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px; /* Tăng khoảng cách giữa các thành phần */
+}
+
+    .row.mb-4 .col-lg-4 {
+        flex: 1;
+    }
+
+#filterButton {
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0; /* Giữ kích thước của nút không bị co lại */
+}
+/* ghi chú*/
+.table-legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+    .table-legend p {
+        margin: 0 15px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        align-items: center;
+    }
+
+.legend-item {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+/* General Layout */
+.food-menu-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Menu Content */
+.food-menu-popup-content {
+    background-color: #fef5e7; /* Light cream background */
+    padding: 40px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 85%;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    overflow-y: auto;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4); /* Deeper shadow for elegance */
+    transition: transform 0.3s ease;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Category List */
+.menu-categories {
+    width: 25%;
+    padding: 20px;
+    background-color: #f1f1f1; /* Soft background for categories */
+    border-right: 3px solid #e0e0e0;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.menu-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-category-item {
+    padding: 15px;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+    transition: background-color 0.4s, color 0.4s, transform 0.3s;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #5d4037; /* Rich brown text for a cozy feel */
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+    .menu-category-item:hover {
+        background-color: #ffcc80; /* Warm hover effect */
+        color: #fff;
+        transform: translateX(10px); /* Subtle movement on hover */
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+/* Subcategories */
+.sub-category-list {
+    list-style: none;
+    padding-left: 25px;
+    margin-top: 10px;
+}
+
+    .sub-category-list li {
+        padding: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        color: #6d4c41; /* Softer brown for subcategory */
+    }
+
+        .sub-category-list li:hover {
+            background-color: #ffb74d;
+            color: white;
+        }
+
+/* Menu Items Display */
+.menu-items-display {
+    width: 75%;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #fffde7; /* Gentle yellow tint for item display */
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.food-items-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+    gap: 20px; /* Space between items */
+    padding: 0;
+    overflow-x: hidden; /* No horizontal scrolling */
+}
+
+    .food-items-list li {
+        background-color: #fff8e1; /* Light yellow background for the items */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+        .food-items-list li:hover {
+            background-color: #ffe0b2;
+            transform: scale(1.02); /* Slight scaling effect on hover */
+        }
+
+    .food-items-list img {
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .food-items-list {
+        grid-template-columns: 1fr 1fr; /* 2 items per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .food-items-list {
+        grid-template-columns: 1fr; /* 1 item per row on very small screens */
+    }
+}
+
+/* Cart Summary */
+.food-cart-summary {
+    background-color: #fff3e0; /* Soft, warm background */
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    position: sticky;
+    top: 10px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+#foodTotalPrice {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #d84315; /* Bright and attractive color for the price */
+}
+
+/* Button */
+.food-btn {
+    background: linear-gradient(135deg, #ffb74d, #ff9800);
+    color: white;
+    padding: 16px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+}
+
+    .food-btn:hover {
+        background-color: #ff7043;
+        transform: translateY(-4px); /* More lift effect on hover */
+    }
+
+/* Radio Button Styling */
+input[type="radio"] {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #333;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 12px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+    input[type="radio"]:checked {
+        background-color: #ffa726;
+    }
+
+label {
+    font-size: 1.2rem;
+    color: #5d4037;
+    font-weight: 500;
+}
+
+/* Custom Checkbox */
+input[type="checkbox"] {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #777;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: white;
+    position: relative;
+}
+
+    input[type="checkbox"]:checked {
+        background-color: #ffcc80;
+        border-color: #ffa726;
+    }
+
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            font-size: 16px;
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 6px;
+        }

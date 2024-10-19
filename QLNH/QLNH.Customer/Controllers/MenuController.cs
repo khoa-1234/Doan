@@ -20,12 +20,16 @@ namespace QLNH.Customer.Controllers
             _userApiClient = userApiClient;
             _configuration = configuration;
         }
-       
+
         public async Task<IActionResult> Index()
         {
-
             var token = User.Claims.FirstOrDefault(c => c.Type == "Token")?.Value;
             var client = _userApiClient.CreateClientWithToken(token);
+
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            }
 
             var nhomMonAnResponse = await client.GetAsync("/api/NhomMonAns");
             var monAnResponse = await client.GetAsync("/api/MonAn");
@@ -49,12 +53,8 @@ namespace QLNH.Customer.Controllers
                 return View(menuViewModel);
             }
 
-          
+
             return View(new MenuViewModel()); // Trả về một MenuViewModel rỗng nếu không có dữ liệu
         }
-
-
-
-
     }
 }
