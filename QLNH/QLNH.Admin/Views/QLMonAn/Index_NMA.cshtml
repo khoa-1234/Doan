@@ -1,0 +1,68 @@
+﻿@model List<QLNH.Data.Models.NhomMonAn>
+
+<h2>Danh Sách Nhóm Món Ăn</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên Nhóm</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nhom in Model)
+        {
+            <tr>
+                <td>@nhom.TenNhom</td>
+                <td>
+                    <a href="@Url.Action("EditNhom", "QLMonAn", new { id = nhom.NhomMonAnId })" class="btn btn-warning">Sửa</a>
+                    <a href="javascript:void(0)" class="btn btn-danger" onclick="confirmDelete('@nhom.TenNhom', @nhom.NhomMonAnId)">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(groupName, id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa ' + groupName + ' không?',
+            text: "Hành động này không thể hoàn tác!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có, xóa!',
+            cancelButtonText: 'Không, quay lại!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform delete operation using AJAX or form submission
+                $.ajax({
+                    url: '@Url.Action("DeleteNhom", "QLMonAn")',
+                    type: 'POST',
+                    data: {
+                        id: id,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire(
+                                'Đã xóa!',
+                                groupName + ' đã được xóa thành công.',
+                                'success'
+                            ).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire('Lỗi!', response.message, 'error');
+                        }
+                    },
+                    error: function () {
+                        Swal.fire('Lỗi!', 'Có lỗi xảy ra khi xóa.', 'error');
+                    }
+                });
+            }
+        });
+    }
+</script>

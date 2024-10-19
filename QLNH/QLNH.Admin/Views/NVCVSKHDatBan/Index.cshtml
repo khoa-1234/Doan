@@ -1,0 +1,58 @@
+﻿@* @model IEnumerable<QLNH.Admin.Models.DatBanViewModel>
+
+<h2>Danh Sách Đặt Bàn</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Mã Đặt Bàn</th>
+            <th>Khách Hàng ID</th>
+            <th>Họ và Tên</th> <!-- Tên khách hàng -->
+            <th>Ngày Đặt</th>
+            <th>Thời Gian Đặt</th>
+            <th>Số Người</th>
+            <th>Phương Thức Đặt</th>
+            <th>Trạng Thái</th>
+            <th>Ghi Chú</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DatBanId</td>
+                    <td>@item.KhachHangId</td>
+                    <td>@item.HoTen</td> <!-- Hiển thị Tên khách hàng -->
+                    <td>@item.NgayDat?.ToString("yyyy-MM-dd")</td>
+                    <td>@item.ThoiGianDat?.ToString("MM/dd/yyyy hh:mm tt")</td>
+                    <td>@item.SoNguoi</td>
+                    <td>@item.PhuongThucDat</td>
+                    <td>
+                        @if (item.TrangThai == "Chờ duyệt")
+                        {
+                            <span style="color: red; font-weight: bold;">Chờ duyệt</span>
+                        }
+                        else if (item.TrangThai == "Đã duyệt")
+                        {
+                            <span style="color: green; font-weight: bold;">Đã duyệt</span>
+                        }
+                        else
+                        {
+                            <span style="color: gray;">@item.TrangThai</span>
+                        }
+                    </td>
+                    <td>@item.GhiChu</td> <!-- Hiển thị ghi chú -->
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="9">Không có dữ liệu để hiển thị.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+ *@

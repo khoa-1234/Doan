@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QLNH.Customer.props" />
+</Project>

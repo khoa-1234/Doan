@@ -1,0 +1,83 @@
+﻿@model List<QLNH.Data.Models.NhanVien>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<!-- SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Danh Sách Nhân Viên</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="mb-4">
+        <a class="btn btn-primary" asp-controller="QLNV" asp-action="Create">
+            <i class="fas fa-plus me-1"></i> Thêm Nhân Viên
+        </a>
+
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Danh Sách Nhân Viên
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Họ Và Tên</th>
+                        <th>Chức Vụ</th>
+                        <th>Ngày Sinh</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Bộ Phận</th>
+                        <th>Email</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var nhanVien in Model)
+                    {
+                        <tr>
+                            <td>@nhanVien.HoTen</td>
+                            <td>@nhanVien.ChucVu</td>
+                            <td>@nhanVien.NgaySinh?.ToString("dd/MM/yyyy")</td>
+                            <td>@nhanVien.SoDienThoai</td>
+                            <td>@nhanVien.BoPhan</td>
+                            <td>@nhanVien.Email</td>
+                            <td>
+                                <a asp-controller="QLNV" asp-action="Edit" asp-route-id="@nhanVien.NhanVienId" class="btn btn-warning btn-sm">Sửa</a>
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('@nhanVien.HoTen', @nhanVien.NhanVienId)">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmDelete(hoTen, id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa ' + hoTen + ' không?',
+            text: "Hành động này không thể hoàn tác!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có, xóa!',
+            cancelButtonText: 'Không, quay lại!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Delete", "QLNV")/' + id;
+            }
+        });
+    }
+</script>

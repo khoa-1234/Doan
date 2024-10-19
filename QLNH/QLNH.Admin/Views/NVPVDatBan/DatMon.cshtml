@@ -1,0 +1,1072 @@
+﻿@model QLNH.Admin.ViewModels.OrderDishViewModel
+@{
+    Layout = null;
+}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <!-- Nút Menu -->
+        <div class="menu-button-container">
+            <button id="menuToggle" class="btn btn-toggle-menu">
+                <span><i class="fas fa-bars"></i> Mở Menu</span>
+            </button>
+        </div>
+
+
+        <div id="menuColumn" class="menu-column">
+            <h4 class="text-center">Menu</h4>
+            <ul id="menuList" class="multi-level-menu">
+                @foreach (var group in Model.DishGroups)
+                {
+                    <li class="menu-group">
+                        <a href="#" onclick="toggleDishList(this); return false;">@group.TenNhom</a>
+                        <ul class="dish-list d-none">
+                            @if (group.Children != null && group.Children.Count > 0)
+                            {
+                                foreach (var childGroup in group.Children)
+                                {
+                                    <li class="menu-group">
+                                        <a href="#" onclick="toggleDishList(this); return false;">@childGroup.TenNhom</a>
+                                        <ul class="dish-list d-none">
+                                            @if (childGroup.Children != null && childGroup.Children.Count > 0)
+                                            {
+                                                foreach (var subChildGroup in childGroup.Children)
+                                                {
+                                                    <li class="menu-group">
+                                                        <a href="#" onclick="toggleDishList(this); return false;">@subChildGroup.TenNhom</a>
+                                                        <ul class="dish-list d-none">
+                                                            <!-- Kiểm tra và hiển thị món ăn trong nhóm con -->
+                                                            @if (subChildGroup.Dishes != null && subChildGroup.Dishes.Count > 0)
+                                                            {
+                                                                foreach (var dish in subChildGroup.Dishes)
+                                                                {
+                                                                    <li>
+                                                                        <a href="#"
+                                                                           onclick="showDishDetails('@dish.HinhAnh', '@dish.TenMonAn', '@dish.MoTa', '@(dish.Gia > 0 ? dish.Gia.Value.ToString("C") : "Chưa có giá")')">
+                                                                            @dish.TenMonAn - @(dish.Gia > 0 ? dish.Gia.Value.ToString("C") : "Chưa có giá")
+                                                                        </a>
+                                                                    </li>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>Không có món ăn nào trong nhóm này.</li>
+                                                            }
+                                                        </ul>
+                                                    </li>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <li>Không có nhóm món ăn nào trong nhóm này.</li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                @if (group.Dishes != null && group.Dishes.Count > 0)
+                                {
+                                    foreach (var dish in group.Dishes)
+                                    {
+                                        <li>
+                                            <a href="#"
+                                               onclick="showDishDetails('@dish.HinhAnh', '@dish.TenMonAn', '@dish.MoTa', '@(dish.Gia > 0 ? dish.Gia.Value.ToString("C") : "Chưa có giá")')">
+                                                @dish.TenMonAn - @(dish.Gia > 0 ? dish.Gia.Value.ToString("C") : "Chưa có giá")
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                                else
+                                {
+                                    <li>Không có món ăn nào trong nhóm này.</li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </div>
+
+       
+
+
+        <!-- Khu vực hiển thị chi tiết món ăn -->
+        <div id="dishDetails" class="dish-details">
+            <h4 id="dishName"></h4>
+            <img id="dishImage" src="" alt="Dish Image" style="max-width: 200px;" />
+            <p id="dishDescription"></p>
+            <p id="dishPrice"></p>
+        </div>
+
+        <script>// Hiển thị/Ẩn danh sách món trong nhóm
+function toggleDishList(element) {
+    const dishList = element.nextElementSibling; // Lấy phần tử ul sau a
+    dishList.classList.toggle('d-none');
+}
+
+// Hiển thị chi tiết món ăn
+function showDishDetails(image, name, description, price) {
+    const dishDetailsPanel = document.getElementById('dishDetails');
+    document.getElementById('dishImage').src = image;
+    document.getElementById('dishName').innerText = name;
+    document.getElementById('dishPrice').innerText = price;
+    document.getElementById('dishDescription').innerText = description;
+
+    dishDetailsPanel.classList.remove('d-none'); // Hiển thị khu vực chi tiết món ăn
+}
+</script>
+        <!-- Nội dung giữa -->
+        <div class="col-md-6">
+            <div id="dish-details-panel" class="dish-details-panel d-none">
+                <img id="dish-image" src="" alt="Hình ảnh món ăn" class="dish-detail-image" />
+                <h3 id="dish-name" class="mt-3"></h3>
+                <p id="dish-price" class="text-success"></p>
+                <p id="dish-description"></p>
+                <button class="btn btn-primary mt-3" onclick="addToOrder()">Thêm vào đơn</button>
+            </div>
+        </div>
+
+        <!-- Đơn hàng -->
+        <div class="col-md-3 order-column">
+            <h4 class="text-center">Đơn Hàng</h4>
+            <div class="order-summary bg-light p-4 rounded shadow">
+                <ul id="order-list" class="list-group"></ul>
+                <p id="total-amount" class="font-weight-bold text-right">Tổng Tiền: 0 VND</p>
+                <div class="text-center mt-3">
+                    <button class="btn btn-success btn-lg mb-2" onclick="submitOrder()">Đặt Món</button>
+                    <button class="btn btn-secondary btn-lg" onclick="window.history.back()">Quay Lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleDishList(element) {
+        // Tìm ul con trong menu
+        const dishList = element.nextElementSibling; // Lấy phần tử ul sau a
+
+        // Kiểm tra nếu phần tử ul đó có class 'd-none'
+        if (dishList.classList.contains('d-none')) {
+            // Nếu có, xóa class 'd-none' để hiện menu
+            dishList.classList.remove('d-none');
+        } else {
+            // Nếu không, thêm class 'd-none' để ẩn menu
+            dishList.classList.add('d-none');
+        }
+    }
+</script>
+<script>
+    // Thêm console.log để kiểm tra menu
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuList = @Html.Raw(Json.Serialize(Model.DishGroups));
+        console.log("Menu Data:", menuList); // In ra dữ liệu menu vào console
+    });
+
+    function toggleDishList(element) {
+        // Tìm ul con trong menu
+        const dishList = element.nextElementSibling; // Lấy phần tử ul sau a
+
+        // Kiểm tra nếu phần tử ul đó có class 'd-none'
+        if (dishList.classList.contains('d-none')) {
+            // Nếu có, xóa class 'd-none' để hiện menu
+            dishList.classList.remove('d-none');
+        } else {
+            // Nếu không, thêm class 'd-none' để ẩn menu
+            dishList.classList.add('d-none');
+        }
+    }
+</script>
+
+<!--Xử lí chi tiết món ăn -->
+<script>
+
+    // Xử lý hiệu ứng mở/đóng menu
+    const menuToggle = document.getElementById('menuToggle');
+    const menuColumn = document.getElementById('menuColumn');
+
+    menuToggle.addEventListener('click', function () {
+        menuColumn.classList.toggle('menu-open');
+    });
+
+
+
+    // Hiển thị/Ẩn danh sách món trong nhóm
+    function toggleDishList(element) {
+        const dishList = element.nextElementSibling;
+        dishList.classList.toggle('d-none');
+    }
+
+    // Hiển thị chi tiết món ăn
+    function showDishDetails(image, name, description, price) {
+        const dishDetailsPanel = document.getElementById('dish-details-panel');
+        document.getElementById('dish-image').src = image;
+        document.getElementById('dish-name').innerText = name;
+        document.getElementById('dish-price').innerText = `${price} VND`;
+        document.getElementById('dish-description').innerText = description;
+
+        dishDetailsPanel.classList.remove('d-none');
+    }
+
+</script>
+<style>
+    .d-none {
+        display: none;
+    }
+</style>
+
+<style>
+    body {
+        background-color: #e3f2fd;
+        font-family: 'Arial', sans-serif;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    /* Căn chỉnh và làm đẹp nút Menu */
+    .menu-button-container {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+    }
+
+    .btn-toggle-menu {
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 10px 20px;
+        font-size: 16px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+    }
+
+        .btn-toggle-menu:hover {
+            background-color: #1e88e5;
+            transform: scale(1.1);
+        }
+    /* Menu dọc */
+    .menu-column {
+        background-color: #bbdefb;
+        width: 250px;
+        height: 100vh;
+        overflow-y: auto;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+        padding-top: 70px;
+    }
+
+
+    .menu-open {
+        transform: translateX(0);
+    }
+
+    /* Main content */
+    .main-content {
+        margin-left: 250px; /* Để tránh đè menu */
+        margin-right: 250px; /* Tránh đè phần đơn hàng bên phải */
+        padding: 20px;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .order-column {
+        background-color: #f8f9fa;
+        width: 250px;
+        height: 100vh;
+        overflow-y: auto;
+        position: fixed;
+        right: 0;
+        top: 0;
+        border-left: 1px solid #ddd;
+    }
+
+    /* Danh sách món ăn */
+    .multi-level-menu {
+        list-style: none;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .menu-group {
+        background-color: #42a5f5;
+        margin-bottom: 5px;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .menu-group:hover {
+            background-color: #1e88e5;
+        }
+
+    .menu-dish {
+        margin: 5px 0;
+        background-color: white;
+        padding: 8px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+        .menu-dish:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Panel chi tiết món ăn */
+    .dish-details-panel {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Nút menu */
+    .btn-toggle-menu {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1100;
+    }
+
+    /* Chi tiết ảnh món ăn */
+    .dish-detail-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    /* Tổng tiền */
+    .text-success {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    /* Phần nút hành động */
+    .text-center button {
+        margin: 5px;
+    }
+
+    .d-none {
+        display: none;
+    }
+
+</style>
+
+
+<!--Xử lí lọc-->
+<script>
+    function filterDishes(groupId) {
+        var allDishes = document.querySelectorAll('.dish-group');
+
+        // Hiển thị hoặc ẩn các món ăn theo nhóm được chọn
+        allDishes.forEach(function (group) {
+            if (groupId === 'all' || group.getAttribute('data-group') === groupId) {
+                group.style.display = 'flex'; // Hiển thị món ăn
+            } else {
+                group.style.display = 'none'; // Ẩn món ăn
+            }
+        });
+
+        // Cập nhật màu sắc của các nút
+        var allButtons = document.querySelectorAll('.filter-btn'); // Chọn tất cả các nút nhóm món
+        allButtons.forEach(function (btn) {
+            btn.classList.remove('active-btn'); // Loại bỏ lớp "active-btn" từ tất cả các nút
+        });
+
+        // Thêm màu nổi bật cho nút được nhấn
+        var activeButton = document.querySelector(`[data-group-btn="${groupId}"]`);
+        activeButton.classList.add('active-btn');
+    }
+
+</script>
+
+<<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeOrderModal()">&times;</span>
+        <div class="modal-body">
+            <img id="dishImageModal" src="" alt="Hình ảnh món ăn" class="img-fluid mb-3 dish-modal-image" />
+            <h3 id="dishName" class="mb-3"></h3>
+            <p id="dishPrice" class="text-muted"></p>
+            <label for="quantity" class="mt-3">Số lượng:</label>
+            <input type="number" id="quantity" value="1" min="1" class="form-control mb-3 quantity-input" />
+            <button class="btn btn-success w-100 mb-2" onclick="addToOrder()">Đặt</button>
+            <button class="btn btn-danger w-100" onclick="closeOrderModal()">Hủy</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- Xử lí Modal -->
+<script>
+    // Các biến cần thiết
+    var selectedDishId = 0;
+    var selectedDishName = '';
+    var selectedDishPrice = 0;
+    var selectedDishImage = '';  // Lưu đường dẫn ảnh
+    var orderItems = {}; // Để lưu trữ danh sách các món đã thêm vào đơn
+
+    // Hàm hiển thị modal và chọn món
+    function openOrderModal(dishName, dishId, dishPrice, dishImage) {
+        console.log("Đã nhấn nút 'Thêm vào đơn'");
+
+        // Lưu trữ thông tin món ăn vào các biến
+        selectedDishId = dishId;
+        selectedDishName = dishName;
+        selectedDishPrice = dishPrice;
+        selectedDishImage = dishImage;
+
+        // Đặt các giá trị vào modal
+        document.getElementById('dishName').innerText = dishName;
+        document.getElementById('dishPrice').innerText = dishPrice + ' VND';
+        document.getElementById('dishImageModal').src = dishImage;  // Hiển thị ảnh món ăn trong modal
+
+        // Hiển thị modal
+        document.getElementById('orderModal').style.display = 'block';
+    }
+
+    // Hàm đóng modal
+    function closeOrderModal() {
+        document.getElementById('orderModal').style.display = 'none';
+    }
+
+    // Hàm thêm món vào danh sách đơn hàng
+    function addToOrder() {
+        var quantity = parseInt(document.getElementById('quantity').value); // Lấy số lượng từ input
+
+        // Nếu món đã tồn tại trong đơn, tăng số lượng
+        if (orderItems[selectedDishId]) {
+            orderItems[selectedDishId].quantity += quantity;
+        } else {
+            // Nếu món chưa tồn tại, thêm món mới vào đơn
+            orderItems[selectedDishId] = {
+                name: selectedDishName,
+                price: selectedDishPrice,
+                quantity: quantity,
+                image: selectedDishImage
+            };
+        }
+
+        // Cập nhật danh sách đơn hàng
+        updateOrderList();
+
+        // Đóng modal sau khi thêm món
+        closeOrderModal();
+    }
+    var orderItems = {};  // Assuming this is already populated with items
+    function updateOrderList() {
+        var orderList = document.getElementById('order-list');
+        var totalAmount = 0; // Initialize total amount
+        orderList.innerHTML = ''; // Clear the existing order list
+
+        // Loop through the items in the order and display them
+        for (var dishId in orderItems) {
+            var item = orderItems[dishId];
+            var listItem = document.createElement('li');
+            listItem.classList.add('list-group-item');
+            listItem.innerHTML = `
+                        <div class="order-item-name">
+                            <img src="${item.image}" alt="Hình ảnh món ăn" width="50" height="50" class="mr-2" />
+                            ${item.name} - ${item.quantity} x ${item.price} VND
+                        </div>
+                        <div class="order-item-actions">
+                            <button class="btn btn-sm btn-success" onclick="increaseQuantity(${dishId})">+</button>
+                            <button class="btn btn-sm btn-danger" onclick="decreaseQuantity(${dishId})" ${item.quantity === 1 ? 'disabled' : ''}>-</button>
+                            <button class="btn btn-sm btn-danger" onclick="removeFromOrder(${dishId})">X</button>
+                        </div>
+                    `;
+            orderList.appendChild(listItem);
+
+            // Add the price of the current item to the total amount
+            totalAmount += item.quantity * item.price;
+        }
+
+        // Update the total amount below the order list
+        document.getElementById('total-amount').innerText = 'Tổng Tiền: ' + totalAmount + ' VND';
+    }
+
+    // Function to increase quantity
+    function increaseQuantity(dishId) {
+        orderItems[dishId].quantity += 1;
+        updateOrderList();
+    }
+
+    // Function to decrease quantity
+    function decreaseQuantity(dishId) {
+        if (orderItems[dishId].quantity > 1) {
+            orderItems[dishId].quantity -= 1;
+            updateOrderList();
+        }
+    }
+
+    // Function to remove an item from the order
+    function removeFromOrder(dishId) {
+        delete orderItems[dishId];
+        updateOrderList();
+    }
+
+</script>
+
+<script>
+    function calculateTotalAmount() {
+        var totalAmount = 0;
+        for (var dishId in orderItems) {
+            if (orderItems.hasOwnProperty(dishId)) {
+                var item = orderItems[dishId];
+                totalAmount += item.quantity * item.price; // Tính tổng tiền
+            }
+        }
+        return totalAmount;
+    }
+
+    function submitOrder() {
+        if (Object.keys(orderItems).length === 0) {
+            alert("Vui lòng chọn ít nhất một món ăn trước khi đặt.");
+            return;
+        }
+
+        var tableId = '@(Model.TableId)';
+        var datBanId = '@(Model.DatBanId)';
+        var khachHangId = '@(Model.KhachHangId)';
+        var nhanVienId = '@(Model.NhanVienId)';
+        if (@(Model.DonHangId)> 0) { var donHangId = '@(Model.DonHangId)' ; }
+        else{
+            var donHangId = null;
+        }
+        
+
+        if (!tableId || !datBanId || !khachHangId) {
+            alert("Thông tin bàn hoặc khách hàng không hợp lệ.");
+            return;
+        }
+
+        var orderData = {
+            donHangId: donHangId,
+            datBanId: datBanId,
+            nhanVienId: nhanVienId || 2,
+            khachHangId: khachHangId,
+            tongTien: calculateTotalAmount(),
+            chiTietDonHangs: []
+        };
+
+        for (var dishId in orderItems) {
+            var item = orderItems[dishId];
+            orderData.chiTietDonHangs.push({
+                monAnId: dishId,
+                soLuong: item.quantity,
+                gia: item.price,
+            });
+        }
+        console.log(orderData);
+        fetch('@Url.Action("BookOrder", "NVPVDatBan")', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(orderData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert(data.message);
+
+                    if (data.donHangId) {  // Nếu server trả về `donHangId`, tiếp tục xử lý
+                        const currentUrl = new URL(window.location.href);
+                        const currentDonHangId = currentUrl.searchParams.get('donHangId');
+
+                        if (!currentDonHangId) {  // Trường hợp không có `donHangId` trong URL
+                            // Cập nhật URL với `donHangId` mới
+                            currentUrl.searchParams.set('donHangId', data.donHangId);
+                            window.history.pushState(null, '', currentUrl);
+
+                            // Reload lại trang để áp dụng `donHangId` mới
+                            window.location.reload();
+                        } else {
+                            // Nếu đã có `donHangId`, chỉ cần cập nhật lịch sử đơn hàng
+                            getOrderHistory(data.donHangId);
+                            toggleOrderHistory();  // Hiển thị phần lịch sử đơn hàng
+                        }
+                    }
+                } else {
+                    alert("Đã xảy ra lỗi khi đặt món.");
+                }
+            })
+
+
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Đã xảy ra lỗi khi gửi yêu cầu.");
+            });
+    }
+
+
+</script>
+
+
+<!--Lịch sử món ăn-->
+<script>
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+        var results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    document.getElementById('toggle-history-btn').onclick = function () {
+        var donHangId = getParameterByName('donHangId');
+
+        if (donHangId) {
+            toggleOrderHistory(); // Hiển thị lịch sử đặt món
+            getOrderHistory(donHangId); // Gọi API để lấy lịch sử đơn hàng
+        } else {
+            alert("Không tìm thấy DonHangId trong URL.");
+        }
+    };
+
+    function getOrderHistory(donHangId) {
+        if (!donHangId) {
+            console.error("donHangId không hợp lệ");
+            return;
+        }
+
+        fetch(`/NVPVDatBan/GetOrderHistory?donHangId=${donHangId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.data && data.data.monAnDaDat.length > 0) {
+                    displayOrderHistory(data.data.monAnDaDat);  // Hiển thị lịch sử đơn hàng
+                } else {
+                    document.getElementById('order-history-content').innerHTML = '<p>Chưa có lịch sử đặt món.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra khi lấy lịch sử đặt món:', error);
+            });
+    }
+
+    function toggleOrderHistory() {
+        var orderHistory = document.getElementById('order-history');
+        var toggleBtn = document.getElementById('toggle-history-btn');
+
+        if (orderHistory.style.display === 'none') {
+            orderHistory.style.display = 'block';
+            toggleBtn.innerText = 'Ẩn Lịch Sử';
+        } else {
+            orderHistory.style.display = 'none';
+            toggleBtn.innerText = 'Lịch Sử Đặt Món';
+        }
+    }
+
+    function displayOrderHistory(orderHistory) {
+        let historyHtml = '';
+        const imageBaseUrl = 'https://localhost:7244/api/MonAn/images/MonAn/';  // Use the correct ImageBaseUrl
+
+        orderHistory.forEach(item => {
+            // Construct the full image URL using the base URL and the hinhAnhDaiDien field
+            const imageUrl = `${imageBaseUrl}${item.hinhAnhDaiDien}`;
+
+            // Debugging: Log the image URL to the console
+            console.log("Image URL:", imageUrl);
+
+            // Build the HTML for each order history item with increased image size
+            historyHtml += `
+                    <div class="order-history-item mb-3" style="display: flex; align-items: center;">
+                        <img src="${imageUrl}" alt="${item.tenMonAn}" width="100" height="100" class="mr-2" style="border-radius: 10px; object-fit: cover;"
+                            onerror="this.onerror=null; this.src='/images/default-image.jpg';" />  <!-- Use a fallback image -->
+                        <div>
+                            <strong>${item.tenMonAn}</strong><br>
+                            Số lượng: ${item.soLuong}<br>
+                            Giá: ${item.gia} VND
+                        </div>
+                    </div>
+                `;
+        });
+
+        // Inject the HTML into the order history section
+        document.getElementById('order-history-content').innerHTML = historyHtml;
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        loadMenu();
+    });
+
+    function loadMenu() {
+        fetch('/NVPVDatBan/GetMenu')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isSuccess) {
+                    const menuList = document.getElementById('menuList');
+                    menuList.innerHTML = '';  // Xóa danh sách cũ nếu có
+                    data.data.forEach(group => {
+                        let menuItem = createMenuItem(group);
+                        menuList.appendChild(menuItem);
+                    });
+                } else {
+                    console.error('Không thể tải menu:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Lỗi khi gọi API:', error);
+            });
+    }
+
+    function createMenuItem(group) {
+        const listItem = document.createElement('li');
+        listItem.classList.add('menu-group');
+
+        const groupLink = document.createElement('a');
+        groupLink.href = '#';
+        groupLink.textContent = group.tenNhom;
+        groupLink.onclick = function () {
+            toggleDishList(this);
+        };
+        listItem.appendChild(groupLink);
+
+        // Nếu có nhóm con, tạo danh sách con
+        if (group.children && group.children.length > 0) {
+            const childList = document.createElement('ul');
+            childList.classList.add('dish-list', 'd-none');
+            group.children.forEach(child => {
+                const childItem = createMenuItem(child);  // Đệ quy để tạo nhóm con
+                childList.appendChild(childItem);
+            });
+            listItem.appendChild(childList);
+        }
+
+        return listItem;
+    }
+
+    // Hiển thị/Ẩn danh sách món trong nhóm
+    function toggleDishList(element) {
+        const dishList = element.nextElementSibling;
+        if (dishList) {
+            dishList.classList.toggle('d-none');
+        }
+    }
+
+</script>
+<style>
+    .order-history-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+        .order-history-item img {
+            width: 100px; /* Increase size */
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover; /* This ensures the image covers the space without distortion */
+            margin-right: 15px;
+        }
+
+        .order-history-item strong {
+            font-size: 16px;
+        }
+
+</style>
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1050;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px; /* Set fixed width for the modal */
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .modal img {
+        width: 250px; /* Set a fixed width for the image */
+        height: 200px; /* Set a fixed height */
+        object-fit: cover; /* Ensure image covers the box without distorting */
+        border-radius: 8px; /* Optional: Add some rounding to the image */
+        margin-bottom: 15px;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #aaa;
+        font-size: 24px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    /* Additional styles to enhance the layout */
+    .modal h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .modal .btn {
+        width: 80%;
+        padding: 10px;
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .modal .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .modal .btn-success {
+        background-color: #28a745;
+    }
+
+    .modal .form-control {
+        width: 50px;
+        margin: 0 auto;
+    }
+    /* Style for input quantity */
+    .quantity-input {
+        width: 60px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Button styles */
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+    /* Mặc định cho các nút nhóm món */
+    .filter-btn {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        margin-right: 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Màu nổi bật cho nút đang được chọn */
+    .active-btn {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Hiệu ứng khi hover vào các nút, nhưng không áp dụng cho nút đang được chọn */
+    .filter-btn:hover:not(.active-btn) {
+        background-color: #5a6268; /* Màu khác khi hover */
+        color: white;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px; /* Tạo khoảng cách giữa các món */
+        margin-bottom: 40px;
+    }
+
+    .dish-item {
+        flex: 1 1 calc(25% - 20px); /* Mỗi món ăn chiếm 25% chiều rộng */
+        max-width: 25%; /* Đảm bảo món ăn không vượt quá 25% chiều rộng */
+    }
+
+
+    /* Thêm chiều cao cố định cho các thẻ món ăn */
+    .dish-card {
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #fff;
+        transition: box-shadow 0.3s ease, transform 0.2s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        height: 100%; /* Đảm bảo tất cả các thẻ có chiều cao bằng nhau */
+    }
+
+
+        /* Hiệu ứng khi hover vào món ăn */
+        .dish-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Thêm shadow khi hover */
+            transform: translateY(-10px); /* Hiệu ứng nổi lên khi hover */
+        }
+
+    /* Giới hạn chiều cao và chiều rộng của hình ảnh trong vòng tròn */
+    .dish-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9f9f9;
+        margin-bottom: 15px;
+    }
+
+        .dish-circle img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover; /* Giữ tỷ lệ hình ảnh và làm cho nó vừa với container */
+        }
+
+
+    /* Tên món ăn */
+    .dish-card strong {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Giá món ăn */
+    .dish-card p.text-muted {
+        font-size: 1rem;
+        color: #777;
+        margin-bottom: 10px;
+    }
+
+    /* Giới hạn chiều cao của phần mô tả */
+    .dish-description {
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 20px;
+        height: 40px; /* Giới hạn chiều cao để phần mô tả không quá dài */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Thêm dấu "..." nếu nội dung quá dài */
+        white-space: nowrap; /* Giữ nội dung trên một dòng */
+    }
+
+    /* Nút "Thêm vào đơn" */
+    .dish-card .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+        /* Hiệu ứng khi hover vào nút */
+        .dish-card .btn:hover {
+            background-color: #0056b3;
+        }
+
+    /* Khoảng cách giữa các nút nhóm món ăn */
+    .btn {
+        margin-right: 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    /* Căn chỉnh các nút */
+    .text-center button {
+        margin: 5px;
+    }
+
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1050;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 10px;
+        width: 30%;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+        .close:hover, .close:focus {
+            color: #000;
+            text-decoration: none;
+        }
+
+</style>
+ 

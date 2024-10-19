@@ -1,0 +1,100 @@
+﻿@model QLNH.Data.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Cập Nhật Nhân Viên";
+}
+
+<div class="container mt-4">
+    <h1>Cập Nhật Nhân Viên</h1>
+    <form asp-action="EditNhanVien" method="post" asp-controller="QLNV" enctype="multipart/form-data">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <input asp-for="NhanVienId" />
+                        <div class="form-group">
+                            <label for="HoTen">Họ và Tên:</label>
+                            <input type="text" id="HoTen" name="HoTen" class="form-control" value="@Model.HoTen" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="ChucVu">Chức Vụ:</label>
+                            <input type="text" id="ChucVu" name="ChucVu" class="form-control" value="@Model.ChucVu" required />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="NgaySinh">Ngày Sinh:</label>
+                            <input type="text" id="NgaySinh" name="NgaySinh" class="form-control datepicker" value="@Model.NgaySinh?.ToString("dd-MM-yyyy")" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="SoDienThoai">Số Điện Thoại:</label>
+                            <input type="text" id="SoDienThoai" name="SoDienThoai" class="form-control" value="@Model.SoDienThoai" required />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="Email">Email:</label>
+                            <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="DiaChi">Địa Chỉ:</label>
+                            <input type="text" id="DiaChi" name="DiaChi" class="form-control" value="@Model.DiaChi" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="BoPhan">Bộ Phận:</label>
+                            <input type="text" id="BoPhan" name="BoPhan" class="form-control" value="@Model.BoPhan" required />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="HinhAnh">Hình Ảnh Đại Diện:</label>
+                            <input type="text" id="HinhAnh" name="HinhAnh" class="form-control" value="@Model.HinhAnhDaiDien" readonly />
+                            <button type="button" class="btn btn-secondary" id="addImageButton">Thêm Hình</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button>
+    </form>
+</div>
+
+<script>
+    $("#closeButton").click(function () {
+        window.location.href = '@Url.Action("Index", "QLNV")';
+    });
+
+    $(function () {
+        $(".datepicker").datepicker({
+            dateFormat: "dd-mm-yy"
+        });
+
+        $("#addImageButton").click(function () {
+            $("<input type='file' accept='image/*' id='imageUpload' style='display:none;' />").appendTo("body").click().change(function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#HinhAnh").val(file.name); // Hiển thị tên file trong input
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    });
+</script>

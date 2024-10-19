@@ -1,0 +1,190 @@
+﻿<div class="container-fluid  menu">
+    <div class="row">
+        <!-- Bộ lọc bên trái -->
+        <div class="col-md-3">
+            <h3>Bộ lọc món ăn</h3>
+            <div class="list-group">
+                <div class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#monChinhCollapse" role="button" aria-expanded="false" aria-controls="monChinhCollapse">
+                    Món chính
+                </div>
+                <div class="collapse" id="monChinhCollapse">
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action" data-category="mon-chinh" data-subcategory="com">Cơm</button>
+                        <button class="list-group-item list-group-item-action" data-category="mon-chinh" data-subcategory="pho">Phở</button>
+                        <button class="list-group-item list-group-item-action" data-category="mon-chinh" data-subcategory="bun">Bún</button>
+                        <button class="list-group-item list-group-item-action" data-category="mon-chinh" data-subcategory="mi">Mì</button>
+                    </div>
+                </div>
+                <div class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#monPhuCollapse" role="button" aria-expanded="false" aria-controls="monPhuCollapse">
+                    Món phụ
+                </div>
+                <div class="collapse" id="monPhuCollapse">
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action" data-category="mon-phu" data-subcategory="salad">Salad</button>
+                        <button class="list-group-item list-group-item-action" data-category="mon-phu" data-subcategory="sup">Súp</button>
+                        <button class="list-group-item list-group-item-action" data-category="mon-phu" data-subcategory="goi">Gỏi</button>
+                    </div>
+                </div>
+                <div class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#trangMiengCollapse" role="button" aria-expanded="false" aria-controls="trangMiengCollapse">
+                    Tráng miệng
+                </div>
+                <div class="collapse" id="trangMiengCollapse">
+                    <div class="list-group">
+                        <button class="list-group-item list-group-item-action" data-category="trang-mieng" data-subcategory="che">Chè</button>
+                        <button class="list-group-item list-group-item-action" data-category="trang-mieng" data-subcategory="banh">Bánh ngọt</button>
+                        <button class="list-group-item list-group-item-action" data-category="trang-mieng" data-subcategory="kem">Kem</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách món ăn bên phải -->
+        <div class="col-md-9">
+            <h3>Danh sách món ăn</h3>
+            <div id="foodList" class="row">
+                <!-- Món ăn sẽ được thêm vào đây bằng JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Danh sách món ăn mẫu
+    const foods = [
+        { name: 'Cơm tấm', category: 'mon-chinh', subcategory: 'com', image: 'https://via.placeholder.com/300x200.png?text=Cơm+tấm', price: 40000, rating: 4.5, description: 'Cơm tấm sườn nướng thơm ngon, kèm đồ chua và nước mắm.' },
+        { name: 'Phở bò', category: 'mon-chinh', subcategory: 'pho', image: 'https://via.placeholder.com/300x200.png?text=Phở+bò', price: 55000, rating: 4.7, description: 'Phở bò với nước dùng đậm đà, thịt bò mềm và bánh phở dai.' },
+        { name: 'Bún chả', category: 'mon-chinh', subcategory: 'bun', image: 'https://via.placeholder.com/300x200.png?text=Bún+chả', price: 50000, rating: 4.6, description: 'Bún chả với thịt nướng thơm lừng, kèm nước chấm chua ngọt.' },
+        { name: 'Mì Quảng', category: 'mon-chinh', subcategory: 'mi', image: 'https://via.placeholder.com/300x200.png?text=Mì+Quảng', price: 45000, rating: 4.4, description: 'Mì Quảng đặc trưng với nước dùng ít, thịt và tôm tươi ngon.' },
+        { name: 'Salad cá ngừ', category: 'mon-phu', subcategory: 'salad', image: 'https://via.placeholder.com/300x200.png?text=Salad+cá+ngừ', price: 35000, rating: 4.2, description: 'Salad cá ngừ tươi mát với rau xanh và sốt mayonnaise.' },
+        { name: 'Súp cua', category: 'mon-phu', subcategory: 'sup', image: 'https://via.placeholder.com/300x200.png?text=Súp+cua', price: 30000, rating: 4.3, description: 'Súp cua đậm đà với thịt cua tươi và trứng bắc thảo.' },
+        { name: 'Gỏi cuốn', category: 'mon-phu', subcategory: 'goi', image: 'https://via.placeholder.com/300x200.png?text=Gỏi+cuốn', price: 25000, rating: 4.5, description: 'Gỏi cuốn tươi mát với tôm, thịt, rau sống và bún.' },
+        { name: 'Chè thái', category: 'trang-mieng', subcategory: 'che', image: 'https://via.placeholder.com/300x200.png?text=Chè+thái', price: 20000, rating: 4.4, description: 'Chè thái thơm ngon với các loại trái cây và sữa dừa.' },
+        { name: 'Bánh flan', category: 'trang-mieng', subcategory: 'banh', image: 'https://via.placeholder.com/300x200.png?text=Bánh+flan', price: 15000, rating: 4.6, description: 'Bánh flan mềm mịn với lớp caramel thơm ngọt.' },
+        { name: 'Kem xôi', category: 'trang-mieng', subcategory: 'kem', image: 'https://via.placeholder.com/300x200.png?text=Kem+xôi', price: 25000, rating: 4.3, description: 'Kem xôi dừa thơm béo, kết hợp giữa kem và xôi nếp.' },
+    ];
+
+    // Hàm hiển thị món ăn
+    function displayFoods(foodsToDisplay) {
+        const foodList = document.getElementById('foodList');
+        foodList.innerHTML = '';
+
+        foodsToDisplay.forEach(food => {
+            const foodItem = document.createElement('div');
+            foodItem.className = 'col-md-4 food-item';
+            foodItem.innerHTML = `
+                <div class="card h-100">
+                    <img src="${food.image}" class="card-img-top" alt="${food.name}">
+                    <div class="rating">
+                        <i class="fas fa-star text-warning"></i> ${food.rating}
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">${food.name}</h5>
+                        <p class="card-text flex-grow-1">${food.description}</p>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="price">${food.price.toLocaleString('vi-VN')} ₫</span>
+                            <button class="btn btn-primary btn-sm btn-add-to-cart" title="Thêm vào giỏ">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            foodList.appendChild(foodItem);
+        });
+    }
+
+    // Hàm lọc món ăn
+    function filterFoods(category, subcategory) {
+        const filteredFoods = foods.filter(food =>
+            food.category === category && food.subcategory === subcategory
+        );
+        displayFoods(filteredFoods);
+    }
+
+    // Thêm sự kiện cho các nút bộ lọc
+    document.querySelectorAll('.list-group-item[data-category]').forEach(button => {
+        button.addEventListener('click', function () {
+            // Xóa lớp active khỏi tất cả các nút
+            document.querySelectorAll('.list-group-item[data-category]').forEach(btn => btn.classList.remove('active'));
+
+            // Thêm lớp active cho nút được nhấp
+            this.classList.add('active');
+
+            const category = this.getAttribute('data-category');
+            const subcategory = this.getAttribute('data-subcategory');
+            filterFoods(category, subcategory);
+        });
+    });
+
+    // Hiển thị tất cả món ăn khi trang web được tải
+    window.addEventListener('load', () => displayFoods(foods));
+</script>
+<style>
+   .menu{
+        margin-top: 150px;
+        background: white;
+   }
+    .list-group-item {
+        cursor: pointer;
+    }
+
+        .list-group-item.active {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+    .food-item {
+        margin-bottom: 20px;
+    }
+
+    .card {
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745;
+    }
+
+    .rating {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-weight: bold;
+    }
+
+    .btn-add-to-cart {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+        .btn-add-to-cart:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-add-to-cart i {
+            font-size: 1.2rem;
+        }
+</style>

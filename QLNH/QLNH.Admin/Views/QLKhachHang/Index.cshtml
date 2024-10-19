@@ -1,0 +1,99 @@
+﻿@model List<QLNH.Data.Models.KhachHang>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Danh Sách Khách Hàng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Tables</li>
+    </ol>
+    <div class="mb-4">
+        <a class="btn btn-primary" asp-controller="QLKhachHang" asp-action="Create">
+            <i class="fas fa-plus me-1"></i> Thêm Khách Hàng
+        </a>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Danh Sách Khách Hàng
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Họ Và Tên</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Email</th>
+                        <th>Địa Chỉ</th>
+                        <th>Hành Động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var khachHang in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@Url.Content("~/images/avatars/" + khachHang.KhachHangId + ".jpg")" class="avatar-img" alt="Avatar" />
+                            </td>
+                            <td>@khachHang.HoTen</td>
+                            <td>@khachHang.SoDienThoai</td>
+                            <td>@khachHang.Email</td>
+                            <td>@khachHang.DiaChi</td>
+                            <td>
+                                <a asp-controller="QLKhachHang" asp-action="Edit" asp-route-id="@khachHang.KhachHangId" class="btn btn-warning btn-sm">Sửa</a>
+                                <button class="btn btn-danger btn-sm" onclick="confirmDelete('@khachHang.HoTen', @khachHang.KhachHangId)">Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Confirm delete with SweetAlert2 -->
+<script>
+    function confirmDelete(hoTen, id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa ' + hoTen + ' không?',
+            text: "Hành động này không thể hoàn tác!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Có, xóa!',
+            cancelButtonText: 'Không, quay lại!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '@Url.Action("Delete", "QLKhachHang")/' + id;
+            }
+        });
+    }
+</script>
+
+<style>
+    .avatar-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+</style>

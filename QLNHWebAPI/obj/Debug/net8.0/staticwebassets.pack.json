@@ -1,0 +1,137 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\447a66a2-0821-4a83-8cdf-47a656742ba4_Đặt Bàn Online.jpg",
+      "PackagePath": "staticwebassets\\images\\447a66a2-0821-4a83-8cdf-47a656742ba4_Đặt Bàn Online.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\7b4d2be3-bf99-4dd8-b3df-f60816b30589_Cập Nhật Trạng Thái Đặt Món.jpg",
+      "PackagePath": "staticwebassets\\images\\7b4d2be3-bf99-4dd8-b3df-f60816b30589_Cập Nhật Trạng Thái Đặt Món.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\5194dffd-813d-45a8-a081-3f9687a17a5c_cake.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\5194dffd-813d-45a8-a081-3f9687a17a5c_cake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\banh_flan.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\banh_flan.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\bread-barrel.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\bread-barrel.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\caesar.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\caesar.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\cake.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\cake.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\cha_gio.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\cha_gio.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\che_ba_mau.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\che_ba_mau.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\dua_hau.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\dua_hau.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goi_cuon.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goi_cuon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuon.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuonbo.webp",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuonbo.webp"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuonchay.webp",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuonchay.webp"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuondauhu.webp",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuondauhu.webp"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuonmuc.webp",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuonmuc.webp"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\goicuontomthit.webp",
+      "PackagePath": "staticwebassets\\images\\MonAn\\goicuontomthit.webp"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\greek-salad.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\greek-salad.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\imagescomtam_suon.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\imagescomtam_suon.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\imagesgoicuon_chay.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\imagesgoicuon_chay.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\link_hinh_anh_monan_c.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\link_hinh_anh_monan_c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\lobster-bisque.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\lobster-bisque.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\lobster-roll.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\lobster-roll.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\mozzarella.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\mozzarella.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\pho_bo.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\pho_bo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\spinach-salad.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\spinach-salad.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\MonAn\\tuscan-grilled.jpg",
+      "PackagePath": "staticwebassets\\images\\MonAn\\tuscan-grilled.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\NhanVien\\46fe1911-baa2-46e0-9427-9105dff8f6dd_Cập Nhật Trạng Thái Đặt Món.jpg",
+      "PackagePath": "staticwebassets\\images\\NhanVien\\46fe1911-baa2-46e0-9427-9105dff8f6dd_Cập Nhật Trạng Thái Đặt Món.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\wwwroot\\images\\NhanVien\\e84c7783-0bc7-4c00-a3eb-724dcc2fdcf8_UseCase.jpg",
+      "PackagePath": "staticwebassets\\images\\NhanVien\\e84c7783-0bc7-4c00-a3eb-724dcc2fdcf8_UseCase.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.QLNHWebAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.QLNHWebAPI.props",
+      "PackagePath": "build\\QLNHWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.QLNHWebAPI.props",
+      "PackagePath": "buildMultiTargeting\\QLNHWebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.QLNHWebAPI.props",
+      "PackagePath": "buildTransitive\\QLNHWebAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

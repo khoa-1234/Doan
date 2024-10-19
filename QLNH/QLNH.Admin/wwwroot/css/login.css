@@ -1,0 +1,128 @@
+﻿body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background: linear-gradient(135deg, rgba(20,30,48,0.7), rgba(36,48,84,0.7)), url('/img/dark-sunset.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-container {
+    display: flex;
+    width: 85%;
+    max-width: 1100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5); /* Darker shadow for more depth */
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(15px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(15px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Soft border */
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Left side - background image with content */
+.login-image {
+    background-size: cover;
+    background-position: center;
+    width: 50%;
+    padding: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+    .login-image h2 {
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-size: 30px;
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6); /* Stronger shadow for more emphasis */
+    }
+
+    .login-image p {
+        font-size: 16px;
+        margin-bottom: 30px;
+        text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .login-image a {
+        color: white;
+        margin-right: 15px;
+        font-size: 24px;
+        transition: color 0.3s ease;
+    }
+
+        .login-image a:hover {
+            color: #ff6600;
+        }
+
+/* Right side - login form */
+.login-form {
+    width: 50%;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly increased opacity */
+    backdrop-filter: blur(10px); /* More subtle blur for a polished effect */
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    animation: slideIn 1s ease-out;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.login-form h3 {
+    color: #333;
+    font-size: 26px;
+}
+
+.login-form .btn-primary {
+    background-color: #ff6600;
+    border-color: #ff6600;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+    .login-form .btn-primary:hover {
+        background-color: #e65c00;
+        border-color: #e65c00;
+    }
+
+.small {
+    color: #ff6600;
+    font-size: 14px;
+}
+
+    .small:hover {
+        color: #e65c00;
+    }
+
+.form-floating label {
+    color: #666;
+}

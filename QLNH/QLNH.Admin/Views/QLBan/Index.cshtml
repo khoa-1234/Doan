@@ -1,0 +1,242 @@
+﻿@model List<QLNH.Data.Models.Ban>
+
+<!-- Add CSS for the layout and table styles -->
+<style>
+    .table-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .table-card {
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+    }
+
+        .table-card:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+    .table-number {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .table-info {
+        font-size: 14px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .chairs {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .chair-icon {
+        font-size: 20px;
+        margin: 0 2px;
+        color: #333;
+    }
+
+    /* Button styling */
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<!-- Table Management Heading -->
+<h2>Quản Lý Bàn</h2>
+
+<!-- Button to trigger modal for adding a new table -->
+<div class="text-center">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addTableModal">
+        Thêm Bàn Mới
+    </button>
+</div>
+
+<!-- Table grid layout -->
+<div class="table-grid">
+    @foreach (var ban in Model)
+    {
+        <!-- Table card with simple display -->
+        <div class="table-card">
+            <div class="table-number">Bàn @ban.SoBan</div>
+            <div class="table-info">
+                Số Ghế: @ban.SoGhe<br />
+                Khu Vực: @ban.KhuVuc
+            </div>
+            <!-- Display chairs based on the number of seats -->
+            <div class="chairs">
+                @for (var i = 0; i < ban.SoGhe; i++)
+                {
+                    <i class="fas fa-chair chair-icon"></i>
+                }
+            </div>
+            <!-- Buttons for Edit and Delete -->
+            <div class="btn-group mt-2">
+                <!-- Trigger Edit Modal -->
+                <button type="button" class="btn btn-sm btn-warning"
+                        data-bs-toggle="modal" data-bs-target="#editTableModal"
+                        data-id="@ban.BanId" data-name="@ban.SoBan" data-seats="@ban.SoGhe"
+                        data-area="@ban.KhuVuc">
+                    Sửa
+                </button>
+
+                <!-- Delete Form -->
+                <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('@ban.SoBan', '@ban.BanId')">Xóa</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+<!-- Modal for adding a new table -->
+<div class="modal fade" id="addTableModal" tabindex="-1" aria-labelledby="addTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTableModalLabel">Thêm Bàn Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="CreateBan" method="post">
+                    <div class="mb-3">
+                        <label for="TableName" class="form-label">Tên Bàn</label>
+                        <input type="text" class="form-control" id="TableName" name="SoBan" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Seats" class="form-label">Số Ghế</label>
+                        <input type="number" class="form-control" id="Seats" name="SoGhe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Area" class="form-label">Khu Vực</label>
+                        <input type="text" class="form-control" id="Area" name="KhuVuc" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Thêm Bàn</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for editing a table -->
+<div class="modal fade" id="editTableModal" tabindex="-1" aria-labelledby="editTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTableModalLabel">Cập Nhật Thông Tin Bàn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="EditBan" method="post">
+                    <!-- Hidden field to store table ID -->
+                    <input type="hidden" id="editTableId" name="BanId" />
+
+                    <div class="mb-3">
+                        <label for="editTableName" class="form-label">Tên Bàn</label>
+                        <input type="text" class="form-control" id="editTableName" name="SoBan" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editSeats" class="form-label">Số Ghế</label>
+                        <input type="number" class="form-control" id="editSeats" name="SoGhe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editArea" class="form-label">Khu Vực</label>
+                        <input type="text" class="form-control" id="editArea" name="KhuVuc" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirmation dialog for Delete with SweetAlert --> 
+<script>
+function confirmDelete(tableName, id) {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa ' + tableName + ' không?',
+        text: "Hành động này không thể hoàn tác!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Có, xóa!',
+        cancelButtonText: 'Không, quay lại!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Perform delete operation using AJAX
+            $.ajax({
+                url: '@Url.Action("Delete", "QLBan")', // Ensure this matches the delete action
+                type: 'POST',
+                data: {
+                    id: id, // Send the ID of the table to be deleted
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val() // Add anti-forgery token
+                },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire(
+                            'Đã xóa!',
+                            tableName + ' đã được xóa thành công.',
+                            'success'
+                        ).then(() => {
+                            // Reload the page to reflect the changes
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire(
+                            'Lỗi!',
+                            response.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function () {
+                    Swal.fire(
+                        'Lỗi!',
+                        'Có lỗi xảy ra khi xóa.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+</script>
+<script>
+    // Attach event listener to dynamically load data into the Edit Modal
+    var editTableModal = document.getElementById('editTableModal');
+    editTableModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+
+        // Extract data from the button's data attributes
+        var id = button.getAttribute('data-id');
+        var name = button.getAttribute('data-name');
+        var seats = button.getAttribute('data-seats');
+        var area = button.getAttribute('data-area');
+
+        // Update the modal's form fields
+        var modal = this;
+        modal.querySelector('#editTableId').value = id;
+        modal.querySelector('#editTableName').value = name;
+        modal.querySelector('#editSeats').value = seats;
+        modal.querySelector('#editArea').value = area;
+    });
+</script>
+
+<!-- Include Bootstrap and Font Awesome for chair icons -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

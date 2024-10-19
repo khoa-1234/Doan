@@ -1,0 +1,93 @@
+﻿@model QLNH.Data.Models.NhanVien
+
+@{
+    ViewData["Title"] = "Thêm Nhân Viên";
+}
+
+<div class="container mt-4">
+    <h1>Thêm Nhân Viên</h1>
+    <form asp-action="CreateNhanVien" method="post" asp-controller="QLNV" enctype="multipart/form-data">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="HoTen"></label>
+                            <input asp-for="HoTen" class="form-control" required />
+                            <span asp-validation-for="HoTen" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="ChucVu"></label>
+                            <input asp-for="ChucVu" class="form-control" required />
+                            <span asp-validation-for="ChucVu" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="NgaySinh"></label>
+                            <input asp-for="NgaySinh" class="form-control datepicker" required />
+                            <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="SoDienThoai"></label>
+                            <input asp-for="SoDienThoai" class="form-control" required />
+                            <span asp-validation-for="SoDienThoai" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="DiaChi"></label>
+                            <input asp-for="DiaChi" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="BoPhan"></label>
+                            <input asp-for="BoPhan" class="form-control" required />
+                            <span asp-validation-for="BoPhan" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="HinhAnhDaiDien"></label>
+                            <input asp-for="HinhAnhDaiDien"  type="file" class="form-control" readonly />
+                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Lưu Thông Tin</button>
+        <button type="button" class="btn btn-secondary" id="closeButton">Đóng</button>
+    </form>
+</div>
+
+<!-- Thêm CSS và JS cho Datepicker -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+<script>
+    $("#closeButton").click(function () {
+        window.location.href = '@Url.Action("Index", "QLNV")';
+    });
+
+   
+</script>
