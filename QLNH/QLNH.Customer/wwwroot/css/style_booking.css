@@ -67,7 +67,7 @@
 #booking-form textarea {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1rem; /* Điều chỉnh kích thước chữ nếu cần */
-    color: #fff; /* Màu chữ */
+    color: red; /* Màu chữ */
 }
 
     /* Tăng kích thước và thêm độ đậm cho tiêu đề */
@@ -639,47 +639,47 @@ p {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 /* General Layout */
+/* General Popup Styling */
 .food-menu-popup {
     display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* Dark overlay */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Menu Content */
-.food-menu-popup-content {
-    background-color: #fef5e7; /* Light cream background */
-    padding: 40px;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 1200px;
-    max-height: 85%;
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    overflow-y: auto;
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4); /* Deeper shadow for elegance */
+    position: absolute;
+    left: 10%;
+    top: 100px;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.98);
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    z-index: 100;
+    overflow: hidden; /* Đảm bảo nội dung không tràn ra ngoài */
 }
 
-/* Category List */
-.menu-categories {
-    width: 25%;
+/* Menu Content Styling */
+.food-menu-popup-content {
+    background-color: #fef5e7;
     padding: 20px;
-    background-color: #f1f1f1; /* Soft background for categories */
-    border-right: 3px solid #e0e0e0;
-    height: 100%;
-    border-radius: 10px;
-    box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    width: 100%;
+    display: flex;
+    grid-template-columns: 1fr 3fr auto; /* Tách menu, hiển thị món ăn và giỏ hàng */
+    gap: 30px;
 }
 
+/ /* Menu Categories Section */
+.menu-categories {
+    background-color: #fafafa;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow for a soft look */
+    border-right: 3px solid #f0ad4e; /* Highlight border for better separation */
+    height: 100%;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Adjusted Category List */
 .menu-category-list {
     list-style: none;
     padding: 0;
@@ -687,134 +687,177 @@ p {
 }
 
 .menu-category-item {
-    padding: 15px;
+    padding: 16px 12px;
     cursor: pointer;
-    border-bottom: 2px solid #ddd;
-    transition: background-color 0.4s, color 0.4s, transform 0.3s;
+    border-bottom: 2px solid #f0f0f0;
     font-weight: 700;
-    font-size: 1.2rem;
-    color: #5d4037; /* Rich brown text for a cozy feel */
-    border-radius: 8px;
-    letter-spacing: 0.5px;
+    transition: background-color 0.4s, color 0.4s, padding-left 0.3s ease;
+    color: #4a4a4a;
+    text-align: left;
+    font-size: 1.4rem; /* Larger font size for better readability */
+    font-family: 'Montserrat', sans-serif; /* A clean, modern font */
 }
 
     .menu-category-item:hover {
-        background-color: #ffcc80; /* Warm hover effect */
+        background-color: #ffa726;
         color: #fff;
-        transform: translateX(10px); /* Subtle movement on hover */
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        padding-left: 24px; /* Adds smooth transition for padding on hover */
+        border-radius: 8px; /* Rounded edges on hover */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect on hover */
     }
 
-/* Subcategories */
+/* Subcategories Styling */
 .sub-category-list {
     list-style: none;
-    padding-left: 25px;
-    margin-top: 10px;
+    padding: 10px 0 0 15px;
+    margin-top: 15px;
 }
 
-    .sub-category-list li {
-        padding: 10px;
-        font-size: 1rem;
-        cursor: pointer;
-        color: #6d4c41; /* Softer brown for subcategory */
+.menu-subcategory-item {
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    color: #8d6e63;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+    .menu-subcategory-item:hover {
+        background-color: #ffcc80;
+        color: #fff;
+        padding-left: 18px;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+/* Headings for Section */
+.food-menu-popup h2 {
+    font-size: 2.4rem;
+    color: #ff7043;
+    margin-bottom: 20px;
+    font-family: 'Lobster', cursive; /* Gives a unique, friendly vibe */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Adds depth to text */
+}
+
+.food-menu-popup-close {
+    font-size: 2rem;
+    color: #ff7043;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .food-menu-popup-close:hover {
+        transform: scale(1.2); /* Makes close button bigger on hover */
     }
 
-        .sub-category-list li:hover {
-            background-color: #ffb74d;
-            color: white;
-        }
-
-/* Menu Items Display */
+/* Menu Item Display Section */
 .menu-items-display {
-    width: 75%;
     padding: 20px;
-    overflow-y: auto;
-    background-color: #fffde7; /* Gentle yellow tint for item display */
+    background-color: #fffde7;
     border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-height: 600px; /* Adjust this if needed for more space */
+    overflow-y: auto; /* Ensure scrollability */
+    width: 100%; /* Ensure it takes full width */
 }
 
+/* Grid Display for Food Items */
 .food-items-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 items per row */
-    gap: 20px; /* Space between items */
+    grid-template-columns: repeat(2, 1fr); /* Display three items per row */
+    gap: 20px;
+    list-style: none;
     padding: 0;
-    overflow-x: hidden; /* No horizontal scrolling */
+    justify-items: center; /* Center the items horizontally */
 }
 
+    /* Food Item Styling */
     .food-items-list li {
-        background-color: #fff8e1; /* Light yellow background for the items */
+        padding: 20px;
+        background-color: #fff8e1;
+        border: 1px solid #ddd;
+        border-radius: 20px; /* Rounded corners */
+        width: 180px; /* Set fixed width */
+        height: 250px; /* Set fixed height */
+        transition: background-color 0.3s, transform 0.3s;
+        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        border: 2px solid #ddd;
-        border-radius: 12px;
-        transition: background-color 0.3s, transform 0.3s;
+        justify-content: space-between;
     }
 
         .food-items-list li:hover {
             background-color: #ffe0b2;
-            transform: scale(1.02); /* Slight scaling effect on hover */
+            transform: scale(1.05);
         }
 
+    /* Food Item Image */
     .food-items-list img {
-        width: 100px;
+        width: 100px; /* Larger image size */
         height: 100px;
-        border-radius: 10px;
-        margin-bottom: 10px;
+        border-radius: 50%; /* Circular image */
         object-fit: cover;
+        margin: 0 auto 10px; /* Center the image */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-/* Responsive styling for smaller screens */
-@media (max-width: 768px) {
-    .food-items-list {
-        grid-template-columns: 1fr 1fr; /* 2 items per row on smaller screens */
+    /* Food Item Title */
+    .food-items-list h4 {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #5d4037;
     }
-}
 
-@media (max-width: 480px) {
-    .food-items-list {
-        grid-template-columns: 1fr; /* 1 item per row on very small screens */
+    /* Food Item Description */
+    .food-items-list p {
+        font-size: 1rem;
+        color: #757575;
+        margin: 0;
     }
-}
 
-/* Cart Summary */
+/* Ensure that content doesn't get clipped */
+.food-items-list {
+    overflow: visible; /* Prevent clipping */
+}
 .food-cart-summary {
-    background-color: #fff3e0; /* Soft, warm background */
+    background-color: #ffe8cc;
     padding: 20px;
-    border: 1px solid #e0e0e0;
     border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     position: sticky;
     top: 10px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+    width: 250px; /* Chiều rộng cố định cho giỏ hàng */
+    align-self: flex-start;
 }
 
 #foodTotalPrice {
     font-size: 2rem;
     font-weight: bold;
-    color: #d84315; /* Bright and attractive color for the price */
+    color: #d84315;
 }
 
-/* Button */
+/* Button Styling */
 .food-btn {
-    background: linear-gradient(135deg, #ffb74d, #ff9800);
+    background: linear-gradient(135deg, #ff9800, #ff7043);
     color: white;
     padding: 16px 40px;
-    border-radius: 50px;
+    border-radius: 30px;
     border: none;
     cursor: pointer;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    width: 100%;
 }
 
-    .food-btn:hover {
-        background-color: #ff7043;
-        transform: translateY(-4px); /* More lift effect on hover */
-    }
+.food-btn:hover {
+    background-color: #ff7043;
+    transform: translateY(-4px);
+}
 
 /* Radio Button Styling */
 input[type="radio"] {
@@ -829,9 +872,9 @@ input[type="radio"] {
     transition: background-color 0.3s ease;
 }
 
-    input[type="radio"]:checked {
-        background-color: #ffa726;
-    }
+input[type="radio"]:checked {
+    background-color: #ffa726;
+}
 
 label {
     font-size: 1.2rem;
@@ -839,7 +882,7 @@ label {
     font-weight: 500;
 }
 
-/* Custom Checkbox */
+/* Custom Checkbox Styling */
 input[type="checkbox"] {
     appearance: none;
     width: 25px;
@@ -851,16 +894,151 @@ input[type="checkbox"] {
     position: relative;
 }
 
-    input[type="checkbox"]:checked {
-        background-color: #ffcc80;
-        border-color: #ffa726;
+input[type="checkbox"]:checked {
+    background-color: #ffcc80;
+    border-color: #ffa726;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 6px;
+}
+
+/* Additional adjustments for better alignment and modern look */
+.food-menu-popup h2 {
+    font-size: 2rem;
+    color: #ff7043;
+    margin-bottom: 20px;
+}
+
+.food-menu-popup-close {
+    font-size: 2rem;
+    color: #ff7043;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .food-menu-popup-content {
+        grid-template-columns: 1fr; /* Chuyển sang một cột trên màn hình nhỏ */
     }
 
-        input[type="checkbox"]:checked::after {
-            content: '✓';
-            font-size: 16px;
-            color: white;
-            position: absolute;
-            top: 0;
-            left: 6px;
-        }
+    .food-items-list {
+        grid-template-columns: 1fr 1fr; /* Hai món ăn mỗi hàng */
+    }
+
+    .food-cart-summary {
+        position: relative; /* Không cố định giỏ hàng trên màn hình nhỏ */
+        width: 100%; /* Chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+    }
+}
+
+@media (max-width: 480px) {
+    .food-items-list {
+        grid-template-columns: 1fr; /* Một món ăn mỗi hàng trên màn hình rất nhỏ */
+    }
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff3e0; /* Light orange background for cart items */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for better visibility */
+}
+
+.cart-item-image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #4e342e;
+}
+
+.cart-item-price {
+    font-size: 1.1rem;
+    color: #d84315;
+    margin-left: 20px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.remove-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+.selected-items-container {
+    margin-top: 30px;
+}
+
+.selected-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.selected-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.selected-item-details {
+    display: flex;
+    flex-direction: column;
+}
+
+    .selected-item-details h4 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .selected-item-details p {
+        margin: 5px 0 0;
+        color: #888;
+    }

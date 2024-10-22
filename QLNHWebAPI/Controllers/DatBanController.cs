@@ -470,6 +470,7 @@ namespace QLNHWebAPI.Controllers
                 var datBanModel = new DatBan
                 {
                     KhachHangId = khachHangId,
+                    BanId= datBan.BanId,
                     KhuVucId = datBan.KhuvucId,
                     NgayDat = datBan.NgayDat,
                     ThoiGianDat = datBan.ThoiGianDat,
@@ -593,7 +594,7 @@ namespace QLNHWebAPI.Controllers
             public string? HoTen { get; set; }
             public string? OTP { get; set; }
             public DateTime? ThoiGianDat { get; set; }
-           
+           public int? BanId { get; set; }
             public int? SoNguoi { get; set; }
 
             public string? GhiChu { get; set; }
@@ -877,72 +878,90 @@ namespace QLNHWebAPI.Controllers
         [HttpPost("Datmonoffline")]
         public async Task<ActionResult<ResponeMessage>> DatMonOffline([FromBody] DonHangModelView donHangView)
         {
-            if (donHangView == null || donHangView.ChiTietDonHangs == null || !donHangView.ChiTietDonHangs.Any())
+            try
             {
-                return BadRequest(new ResponeMessage
+                if (donHangView == null || donHangView.ChiTietDonHangs == null || !donHangView.ChiTietDonHangs.Any())
+                {
+                    return BadRequest(new ResponeMessage
+                    {
+                        IsSuccess = false,
+                        Message = "Thông tin đặt món không hợp lệ."
+                    });
+                }
+
+                // Tìm đơn hàng trong cơ sở dữ liệu
+                var donHang = await _context.DonHangs.FindAsync(donHangView.DonHangId);
+
+                // Nếu DonHang không tồn tại, tạo mới DonHang
+                if (donHang == null)
+                {
+                    var newDonHang = new DonHang
+                    {
+                        NgayDat = DateOnly.FromDateTime(DateTime.Now),
+                        NhanVienId = donHangView.NhanVienId,
+                        KhachHangId = donHangView.KhachHangId,
+                        DatBanId = donHangView.DatBanId,
+                        TrangThai = "Đang Đặt Món",
+                        TongTien = 0, // Tổng tiền sẽ được tính sau khi thêm chi tiết đơn hàng
+                        NgayCapNhat = DateTime.Now
+                    };
+
+                    _context.DonHangs.Add(newDonHang);
+                    await _context.SaveChangesAsync(); // Lưu DonHang mới và lấy DonHangId
+
+                    // Gán DonHangId mới tạo cho ChiTietDonHang
+                    donHangView.DonHangId = newDonHang.DonHangId;
+
+                    // Lưu lại đối tượng DonHang vừa tạo
+                    donHang = newDonHang;
+                }
+
+                decimal tongTien = donHang.TongTien ?? 0; // Lấy tổng tiền hiện tại
+
+                // Thêm chi tiết đơn hàng (ChiTietDonHang)
+                foreach (var chiTietDonHangView in donHangView.ChiTietDonHangs)
+                {
+                    var chiTietDonHang = new ChiTietDonHang
+                    {
+                        DonHangId = donHang.DonHangId,  // Sử dụng DonHangId từ đối tượng donHang
+                        MonAnId = chiTietDonHangView.MonAnId,
+                        SoLuong = chiTietDonHangView.SoLuong,
+                        Gia = chiTietDonHangView.Gia,
+                        TrangThai = "Đặt Món"
+                    };
+
+                    tongTien += (chiTietDonHang.Gia ?? 0) * (chiTietDonHang.SoLuong ?? 0); // Cộng thêm tổng tiền chi tiết mới
+
+                    _context.ChiTietDonHangs.Add(chiTietDonHang);
+                }
+
+                // Cập nhật tổng tiền cho đơn hàng
+                donHang.TongTien = tongTien;
+                donHang.NgayCapNhat = DateTime.Now;
+
+                // Cập nhật DonHang trong cơ sở dữ liệu
+                _context.DonHangs.Update(donHang);
+
+                // Lưu tất cả thay đổi
+                await _context.SaveChangesAsync();
+
+                return await ReturnMessagesucces(donHang.DonHangId);
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi chi tiết
+                Console.WriteLine($"Lỗi khi lưu đơn hàng: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+
+                return StatusCode(500, new ResponeMessage
                 {
                     IsSuccess = false,
-                    Message = "Thông tin đặt món không hợp lệ."
+                    Message = "Đã xảy ra lỗi khi lưu đơn hàng."
                 });
             }
-
-            // Tìm đơn hàng trong cơ sở dữ liệu
-            var donHang = await _context.DonHangs.FindAsync(donHangView.DonHangId);
-
-            // Nếu DonHang không tồn tại, tạo mới DonHang
-            if (donHang == null)
-            {
-                var newDonHang = new DonHang
-                {
-                    NgayDat = DateOnly.FromDateTime(DateTime.Now),
-                    NhanVienId = donHangView.NhanVienId,
-                    KhachHangId = donHangView.KhachHangId,
-                    DatBanId = donHangView.DatBanId,
-                    TrangThai = "Đang Đặt Món",
-                    TongTien = 0, // Tổng tiền sẽ được tính sau khi thêm chi tiết đơn hàng
-                    NgayCapNhat = DateTime.Now
-                };
-
-                _context.DonHangs.Add(newDonHang);
-                await _context.SaveChangesAsync(); // Lưu DonHang mới và lấy DonHangId
-
-                // Gán DonHangId mới tạo cho ChiTietDonHang
-                donHangView.DonHangId = newDonHang.DonHangId;
-
-                // Lưu lại đối tượng DonHang vừa tạo
-                donHang = newDonHang;
-            }
-
-            decimal tongTien = donHang.TongTien ?? 0; // Lấy tổng tiền hiện tại
-
-            // Thêm chi tiết đơn hàng (ChiTietDonHang)
-            foreach (var chiTietDonHangView in donHangView.ChiTietDonHangs)
-            {
-                var chiTietDonHang = new ChiTietDonHang
-                {
-                    DonHangId = donHang.DonHangId,  // Sử dụng DonHangId từ đối tượng donHang
-                    MonAnId = chiTietDonHangView.MonAnId,
-                    SoLuong = chiTietDonHangView.SoLuong,
-                    Gia = chiTietDonHangView.Gia,
-                    TrangThai = "Đặt Món"
-                };
-
-                tongTien += (chiTietDonHang.Gia ?? 0) * (chiTietDonHang.SoLuong ?? 0); // Cộng thêm tổng tiền chi tiết mới
-
-                _context.ChiTietDonHangs.Add(chiTietDonHang);
-            }
-
-            // Cập nhật tổng tiền cho đơn hàng
-            donHang.TongTien = tongTien;
-            donHang.NgayCapNhat = DateTime.Now;
-
-            // Cập nhật DonHang trong cơ sở dữ liệu
-            _context.DonHangs.Update(donHang);
-
-            // Lưu tất cả thay đổi
-            await _context.SaveChangesAsync();
-            return await ReturnMessagesucces(donHang.DonHangId);
         }
+
+
         [HttpGet("LichSuDonHang/{khachHangId}")]
         public async Task<ActionResult<ResponeMessage>> XemLichSuDonHang(int khachHangId)
         {
@@ -1007,15 +1026,15 @@ namespace QLNHWebAPI.Controllers
             var monAnDaDat = await _context.ChiTietDonHangs
                 .Where(ct => ct.DonHangId == dohangid.DonHangId)
                 .Join(_context.MonAns,
-                      ct => ct.ChiTietDonHangId,
-                      ma => ma.MonAnId,
+                      ct => ct.MonAnId,         // Liên kết bằng MonAnId trong bảng ChiTietDonHangs
+                      ma => ma.MonAnId,         // và MonAnId trong bảng MonAns
                       (ct, ma) => new
                       {
-                          ma.TenMonAn,            // Tên món ăn
-                          ct.SoLuong,             // Số lượng
-                          ma.Gia,                 // Giá món ăn
-                          ma.HinhAnh,     // Hình đại diện
-                          ct.TrangThai            // Trạng thái
+                          ma.TenMonAn,          // Tên món ăn
+                          ct.SoLuong,           // Số lượng
+                          ma.Gia,               // Giá món ăn
+                          ma.HinhAnh,           // Hình đại diện
+                          ct.TrangThai          // Trạng thái
                       })
                 .ToListAsync();
 
@@ -1032,6 +1051,7 @@ namespace QLNHWebAPI.Controllers
 
             // Sử dụng phương thức ReturnMessagesucces để trả về kết quả
             return await ReturnMessagesucces(ketQua);
+
         }
 
         [HttpPut("{id}")]

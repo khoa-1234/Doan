@@ -17,12 +17,12 @@ namespace QLNHWebAPI.ViewModel
 
         public DateTime? NgayCapNhat { get; set; }
 
-        public List<ChiTietDonHangModelView> ChiTietDonHangs { get; set; } = new List<ChiTietDonHangModelView>();
+        public List<ChiTietDonHangModelView>? ChiTietDonHangs { get; set; } = new List<ChiTietDonHangModelView>();
 
-        public virtual ICollection<HoaDon> HoaDons { get; set; } = new List<HoaDon>();
+        public virtual ICollection<HoaDon>? HoaDons { get; set; } = new List<HoaDon>();
 
         public virtual NhanVien? NhanVien { get; set; }
 
-        public virtual ICollection<ThanhToan> ThanhToans { get; set; } = new List<ThanhToan>();
+        public virtual ICollection<ThanhToan>? ThanhToans { get; set; } = new List<ThanhToan>();
     }
 }

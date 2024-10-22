@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\QLNHWebAPI.csproj": {}
+    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\QLNHWebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\QLNHWebAPI.csproj": {
+    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\QLNHWebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\QLNHWebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\QLNHWebAPI.csproj",
         "projectName": "QLNHWebAPI",
-        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\QLNHWebAPI.csproj",
+        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\QLNHWebAPI.csproj",
         "packagesPath": "C:\\Users\\Khoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\obj\\",
+        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
@@ -36,8 +36,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
-                "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj"
+              "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
+                "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\QLNH.Data.csproj"
               }
             }
           }
@@ -137,14 +137,14 @@
         }
       }
     },
-    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
+    "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\QLNH.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
         "projectName": "QLNH.Data",
-        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
+        "projectPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\QLNH.Data.csproj",
         "packagesPath": "C:\\Users\\Khoa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNH\\QLNH.Data\\obj\\",
+        "outputPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",

@@ -1,0 +1,233 @@
+﻿/* Import Google Font for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+/* General layout styles for Flexbox container */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9fafb; /* Light grey background */
+    color: #333; /* Standard text color */
+}
+
+/* General layout styles for Flexbox container */
+.d-flex {
+    display: flex;
+    gap: 20px; /* Adds spacing between columns */
+    justify-content: space-between; /* Ensures content is evenly spaced */
+}
+
+/* Menu section styling */
+.menu-section {
+    flex: 0 0 25%;
+    background-color: #ffffff; /* Clean white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05); /* Slightly deeper shadow */
+}
+
+    /* Heading for the category */
+    .menu-section h4 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+        border-bottom: 2px solid #17a589; /* Softer green accent */
+        padding-bottom: 10px;
+    }
+
+/* Menu category, items, and cart styling */
+.menu-category-list, .food-items-list, .food-cart-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Styling for individual menu items */
+.menu-category-item, .menu-subcategory-item {
+    cursor: pointer;
+    padding: 14px;
+    background-color: #f8f9fa; /* Softer grey for background */
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    font-size: 16px;
+    color: #333;
+    display: block;
+    text-align: left;
+}
+
+    .menu-category-item:hover, .menu-subcategory-item:hover {
+        background-color: #17a589; /* Softer green for hover */
+        color: #fff; /* White text on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-3px); /* Lift effect */
+    }
+
+    /* Active state for expanded categories */
+    .menu-category-item.expanded {
+        background-color: #17a589; /* Softer green */
+        color: #fff; /* White text */
+    }
+
+/* Indentation for subcategories */
+.menu-subcategory-item {
+    margin-left: 20px;
+    background-color: #f0f0f0;
+    border: none;
+    font-weight: 500; /* Lighter font weight for subcategories */
+}
+
+/* Styling for menu items in the center section */
+.food-items-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 20px; /* Spacing between items */
+}
+
+    /* Style for individual food item */
+    .food-items-list li {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: box-shadow 0.3s ease;
+    }
+
+        .food-items-list li:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More prominent shadow on hover */
+        }
+
+/* Style for images */
+.menu-items-display img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Styling for food item titles */
+.food-items-list h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Styling for food item price */
+.food-items-list p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+/* Style for checkboxes */
+.food-items-list input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+/* Cart container styling */
+.cart-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .cart-container h4 {
+        color: #17a589; /* Softer green */
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .cart-container p {
+        font-size: 16px;
+        color: #555;
+    }
+
+/* Cart item styling */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Button styles */
+.btn-lg {
+    background-color: #17a589;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+    .btn-lg:hover {
+        background-color: #148d74;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+    }
+
+    .food-items-list {
+        grid-template-columns: 1fr; /* Stacks items vertically on smaller screens */
+    }
+
+    .menu-items-display img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .cart-section, .menu-section, .food-section {
+        width: 100%; /* Stack them on smaller screens */
+    }
+}
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.cart-item-content {
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-quantity {
+    width: 30px;
+    height: 30px;
+    background-color: #17a589;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-remove {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+}

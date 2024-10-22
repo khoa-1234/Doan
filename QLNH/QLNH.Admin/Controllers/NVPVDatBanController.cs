@@ -488,7 +488,6 @@ namespace QLNH.Admin.Controllers
 
 
 
-
         [HttpPost]
         public async Task<IActionResult> BookOrder([FromBody] OrderDishViewModel orderDishViewModel)
         {
@@ -497,46 +496,88 @@ namespace QLNH.Admin.Controllers
                 return BadRequest(new { message = "Dữ liệu không hợp lệ." });
             }
 
+            // Fetch the username from the logged-in user's session or token
+            var username = User?.Identity?.Name;
+            if (string.IsNullOrEmpty(username))
+            {
+                return BadRequest(new { message = "Không tìm thấy thông tin người dùng. Vui lòng đăng nhập lại." });
+            }
+
             var token = User.Claims.FirstOrDefault(c => c.Type == "Token")?.Value;
             if (string.IsNullOrEmpty(token))
             {
-                return Unauthorized();
+                return Unauthorized(new { message = "Không có token xác thực." });
             }
 
-            int? donHangId = orderDishViewModel.DonHangId == 0 ? (int?)null : orderDishViewModel.DonHangId;
-            var client = _userApiClient.CreateClientWithToken(token);
-
-            var bookOrderData = new DonHangModelView
+            try
             {
-                DonHangId = donHangId,
-                DatBanId = orderDishViewModel.DatBanId,
-                NhanVienId = orderDishViewModel.NhanVienId,
-                KhachHangId = orderDishViewModel.KhachHangId,
-                ChiTietDonHangs = orderDishViewModel.ChiTietDonHangs.Select(ctdh => new ChiTietDonHangModelView
+                // Create HTTP client with token
+                var client = _userApiClient.CreateClientWithToken(token);
+
+                // Retrieve NhanVienId using the username
+                var responseNhanVienId = await client.PostAsync("/api/NhanViens/GetNhanVienIdByUserId",
+                    new StringContent(JsonConvert.SerializeObject(new { username }), Encoding.UTF8, "application/json"));
+
+                if (!responseNhanVienId.IsSuccessStatusCode)
                 {
-                    MonAnId = ctdh.MonAnId,
-                    SoLuong = ctdh.SoLuong,
-                    Gia = ctdh.Gia,
-                }).ToList(),
-            };
+                    var errorContent = await responseNhanVienId.Content.ReadAsStringAsync();
+                    Console.WriteLine("Error getting NhanVienId: " + errorContent);
+                    return BadRequest(new { message = "Có lỗi xảy ra khi lấy thông tin nhân viên." });
+                }
 
-            var jsonContent = JsonConvert.SerializeObject(bookOrderData);
-            var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("/api/DatBan/Datmonoffline", httpContent);
+                // Parse the response to get NhanVienId
+                var responseContent = await responseNhanVienId.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<NhanVienViewModel>(responseContent);
+                var nhanVienId = result.NhanvienId;  // Extract NhanVienId
 
-            var responseData = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<ApiReponse<int>>(responseData);
+                // Prepare the data for the order
+                int? donHangId = orderDishViewModel.DonHangId == 0 ? (int?)null : orderDishViewModel.DonHangId;
 
-            if (result != null && result.IsSuccess)
-            {
-                // Trả về danh sách món ăn, bao gồm hình ảnh
-                return Ok(new { message = "Đặt món thành công!", donHangId = result.Data });
+                var bookOrderData = new DonHangModelView
+                {
+                    DonHangId = donHangId,
+                    DatBanId = orderDishViewModel.DatBanId,
+                    NhanVienId = nhanVienId,  // Use retrieved NhanVienId here
+                    KhachHangId = orderDishViewModel.KhachHangId,
+                    ChiTietDonHangs = orderDishViewModel.ChiTietDonHangs.Select(ctdh => new ChiTietDonHangModelView
+                    {
+                        MonAnId = ctdh.MonAnId,
+                        SoLuong = ctdh.SoLuong,
+                        Gia = ctdh.Gia,
+                    }).ToList(),
+                };
+
+                var jsonContent = JsonConvert.SerializeObject(bookOrderData);
+                var httpContent = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                // Send the order data to the server
+                var response = await client.PostAsync("/api/DatBan/Datmonoffline", httpContent);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorResponse = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error response from server: {errorResponse}");
+                    return StatusCode((int)response.StatusCode, new { message = "Đã xảy ra lỗi trong quá trình đặt món." });
+                }
+
+                var responseData = await response.Content.ReadAsStringAsync();
+                var resultResponse = JsonConvert.DeserializeObject<ApiReponse<int>>(responseData);
+
+                if (resultResponse != null && resultResponse.IsSuccess)
+                {
+                    return Ok(new { message = "Đặt món thành công!", donHangId = resultResponse.Data });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Đặt món không thành công." });
+                }
             }
-            // Trả về DonHangId cùng với thông báo thành công
-            // Trả về thông báo lỗi nếu không thành công
-            return StatusCode((int)response.StatusCode, new { message = "Đã xảy ra lỗi trong quá trình đặt món." });
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                return StatusCode(500, new { message = "Đã xảy ra lỗi không mong muốn." });
+            }
         }
-
         // Đối tượng để chứa dữ liệu phản hồi từ API
         public class DatBanResponse
         {
@@ -583,6 +624,7 @@ namespace QLNH.Admin.Controllers
             return new List<DishGroupViewModel>();
         }
 
+
         public class Dohangid
         {
             public int? DonHangId { get; set; }
@@ -607,7 +649,7 @@ namespace QLNH.Admin.Controllers
                 var apiResponse = JsonConvert.DeserializeObject<ApiResponse<OrderHistoryResponse>>(responseData);
 
                 // Pass the data to the view (apiResponse.Data.MonAnDaDat contains the list of dishes)
-                return Ok(apiResponse);
+                return Ok(apiResponse.Data);
             }
 
             // Return error if API call fails
@@ -624,11 +666,11 @@ namespace QLNH.Admin.Controllers
         // This class represents individual dishes in the order.
         public class MonDaDatModel
         {
-            public string TenMonAn { get; set; }
-            public int SoLuong { get; set; }
-            public decimal Gia { get; set; }
-            public string hinhAnhDaiDien { get; set; }  // Ensure this is populated with the correct filename like 'pho.png'
-            public string TrangThai { get; set; }
+            public string? TenMonAn { get; set; }
+            public int? SoLuong { get; set; }
+            public decimal? Gia { get; set; }
+            public string? HinhAnh { get; set; }  // Ensure this is populated with the correct filename like 'pho.png'
+            public string? TrangThai { get; set; }
         }
 
         public HttpClient CreateClientWithToken(string token)
@@ -695,9 +737,101 @@ namespace QLNH.Admin.Controllers
                 }
             }
         }
-       
 
+        public async Task<IActionResult> GetMenuWithSubGroups()
+        {
+            var token = User.Claims.FirstOrDefault(c => c.Type == "Token")?.Value;
 
+            // Use ApiClientHelper to create HttpClient with token
+            var client = _userApiClient.CreateClientWithToken(token);
+
+            // Fetch dishes from /api/MonAn
+            var monAnResponse = await client.GetAsync("/api/MonAn");
+            if (!monAnResponse.IsSuccessStatusCode)
+            {
+                return Json(new { success = false, message = "Failed to fetch dishes from API." });
+            }
+            var monAnContent = await monAnResponse.Content.ReadAsStringAsync();
+            var monAnResult = JsonConvert.DeserializeObject<ApiResponse<List<MonAnModel>>>(monAnContent);
+
+            // Ensure that the API returned valid data
+            if (monAnResult == null || monAnResult.Data == null)
+            {
+                return Json(new { success = false, message = "Invalid dishes data received." });
+            }
+
+            // Fetch menu groups from /api/NhomMonAns
+            var nhomMonAnResponse = await client.GetAsync("/api/NhomMonAns");
+            if (!nhomMonAnResponse.IsSuccessStatusCode)
+            {
+                return Json(new { success = false, message = "Failed to fetch menu groups from API." });
+            }
+            var nhomMonAnContent = await nhomMonAnResponse.Content.ReadAsStringAsync();
+            var nhomMonAnResult = JsonConvert.DeserializeObject<ApiResponse<List<NhomMonAnModel>>>(nhomMonAnContent);
+
+            // Ensure the API returned valid data for groups
+            if (nhomMonAnResult == null || nhomMonAnResult.Data == null)
+            {
+                return Json(new { success = false, message = "Invalid menu group data received." });
+            }
+
+            // Combine dishes into the correct menu groups
+            var menuItems = BuildMenuHierarchy(nhomMonAnResult.Data, monAnResult.Data);
+
+            // Modify image URLs in the result data
+            var imageBaseUrl = _configuration["ImageBaseUrl"];
+            foreach (var dish in monAnResult.Data)
+            {
+                if (!string.IsNullOrEmpty(dish.HinhAnh))
+                {
+                    dish.HinhAnh = $"{imageBaseUrl}{dish.HinhAnh}";
+                }
+            }
+
+            return Json(new { success = true, data = menuItems });
+        }
+
+        // Helper method to build a nested menu hierarchy with dishes included
+        private List<MenuItem> BuildMenuHierarchy(List<NhomMonAnModel> menuGroups, List<MonAnModel> dishes)
+        {
+            // Create a dictionary to map dishes by their group ID
+            var dishesByGroup = dishes.GroupBy(d => d.NhomMonAnId)
+                                       .ToDictionary(g => g.Key, g => g.ToList());
+
+            // Recursively build the menu hierarchy
+            List<MenuItem> BuildGroup(List<NhomMonAnModel> groups)
+            {
+                return groups.Select(group => new MenuItem
+                {
+                    NhomMonAnId = group.NhomMonAnId,
+                    TenNhom = group.TenNhom,
+                    Children = group.Children != null ? BuildGroup(group.Children) : new List<MenuItem>(),
+                    Dishes = dishesByGroup.ContainsKey(group.NhomMonAnId) ? dishesByGroup[group.NhomMonAnId] : new List<MonAnModel>()
+                }).ToList();
+            }
+
+            // Start building from top-level groups (root groups)
+            return BuildGroup(menuGroups);
+        }
+
+        // Model classes and DTOs specific to this controller or action
+        public class MenuItem
+        {
+            public int NhomMonAnId { get; set; }
+            public string TenNhom { get; set; }
+            public List<MenuItem> Children { get; set; } = new List<MenuItem>();
+            public List<MonAnModel> Dishes { get; set; } = new List<MonAnModel>();
+        }
+
+        public class MonAnModel
+        {
+            public int MonAnId { get; set; }
+            public string TenMonAn { get; set; }
+            public string MoTa { get; set; }
+            public int NhomMonAnId { get; set; }
+            public decimal Gia { get; set; }
+            public string HinhAnh { get; set; }
+        }
 
     }
 }

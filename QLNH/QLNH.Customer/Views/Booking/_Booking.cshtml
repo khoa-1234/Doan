@@ -114,7 +114,11 @@
                 <label for="preOrderYes" class="text-white">Có</label><br>
                 <input type="radio" id="preOrderNo" name="preOrder" value="no" checked>
                 <label for="preOrderNo" class="text-white">Không</label>
+
+                <!-- Nơi hiển thị các món đã thêm vào giỏ hàng -->
+                <div id="selectedItemsSection" class="selected-items-section" style="margin-top: 20px;"></div>
             </div>
+
 
             <div id="foodMenuPopup" class="food-menu-popup">
                 <div class="food-menu-popup-content">
@@ -126,25 +130,38 @@
                         <ul id="foodCategoryList" class="menu-category-list"></ul>
                     </div>
 
-                    <!-- Right: Food Items Display -->
+                    <!-- Center: Food Items Display -->
                     <div class="menu-items-display">
                         <ul id="foodItemsList" class="food-items-list"></ul>
                     </div>
 
-                    <!-- Right: Cart Summary -->
-                    <div class="food-cart-summary">
-                        <h4>Giỏ Hàng</h4>
-                        <ul id="foodCartList"></ul>
+                    <!-- Right: Cart and Add Button -->
+                    <div class="cart-container">
+                        <h4 style="color:aquamarine">Giỏ Hàng</h4>
+                        <ul id="foodCartList">
+                            <!-- Each item will be dynamically inserted here -->
+                        </ul>
                         <p><strong>Tổng Cộng: </strong><span id="foodTotalPrice">0</span> VND</p>
-                    </div>
 
-                    <button id="addToCartButton" class="food-btn btn-lg">Thêm Vào Giỏ</button>
+                        <!-- Add to Cart button at the bottom -->
+                        <button id="addToCartButton" class="food-btn btn-lg">Thêm Vào Giỏ</button>
+                    </div>
                 </div>
             </div>
 
 
+
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-gradient btn-lg px-5">Đặt Bàn Ngay</button>
+                <button id="btn-book-table" type="submit" class="btn btn-gradient btn-lg px-5">Đặt Bàn Ngay</button>
+            </div>
+            <div id="otpModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close" id="closeOtpModal">&times;</span>
+                    <h2>Nhập Mã OTP</h2>
+                    <p>Vui lòng nhập mã OTP mà bạn đã nhận được qua tin nhắn.</p>
+                    <input type="text" id="otpCode" placeholder="Nhập mã OTP" class="form-control form-control-lg" required>
+                    <button id="confirmOtpButton" class="btn btn-gradient btn-lg mt-4">Xác Nhận</button>
+                </div>
             </div>
         </form>
     </div>
@@ -434,12 +451,19 @@
 </script>
 
 <!--Xử lí món ăn-->
+<!-- JS for dynamic behavior -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const foodMenuPopup = document.getElementById('foodMenuPopup');
-        const closeFoodMenuPopup = document.getElementById('closeFoodMenuPopup');
         const preOrderYes = document.getElementById('preOrderYes');
         const preOrderNo = document.getElementById('preOrderNo');
+        const foodCategoryList = document.getElementById('foodCategoryList'); // Category list
+        const foodItemsList = document.getElementById('foodItemsList'); // Dishes list
+        const foodCartList = document.getElementById('foodCartList'); // Cart list
+        const foodTotalPrice = document.getElementById('foodTotalPrice'); // Total price
+        const selectedItemsContainer = document.getElementById('selectedItemsContainer'); // Container to display selected items below
+        const addToCartButton = document.getElementById('addToCartButton');
+        let cart = [];
+        let totalPrice = 0;
 
         // Hide modal by default
         foodMenuPopup.style.display = 'none';
@@ -460,7 +484,14 @@
             foodMenuPopup.style.display = 'none';
         });
 
-        // Load menu function
+        // Handle "Thêm Vào Giỏ" button click
+        addToCartButton.addEventListener('click', function () {
+            foodMenuPopup.style.display = 'none'; // Close the modal when "Thêm Vào Giỏ" is clicked
+            preOrderYes.checked = true; // Automatically select "Có"
+            displaySelectedItems(); // Display selected items below the radio button section
+        });
+
+        // Load menu from API
         function loadMenu() {
             console.log("Calling API /Booking/GetMenuWithSubGroups...");
 
@@ -473,43 +504,74 @@
                 })
                 .then(data => {
                     if (data && data.length > 0) {
-                        console.log("Menu data:", data);
-                        renderCategories(data); // Render categories from API response
+                        renderCategories(data); // Render main categories
                     } else {
-                        console.error('No menu data available.');
-                        document.getElementById('foodCategoryList').innerHTML = '<p>No menu data available.</p>';
+                        foodCategoryList.innerHTML = '<p>No menu data available.</p>';
                     }
                 })
                 .catch(error => {
+                    foodCategoryList.innerHTML = '<p>Failed to load menu. Please try again later.</p>';
                     console.error('API Error:', error);
-                    document.getElementById('foodCategoryList').innerHTML = '<p>Failed to load menu. Please try again later.</p>';
                 });
         }
 
-        // Function to render multi-level categories
+        // Display selected items below the cart
+        function displaySelectedItems() {
+            const selectedItemsSection = document.getElementById('selectedItemsSection');
+            selectedItemsSection.innerHTML = ''; // Clear old content
+
+            cart.forEach(item => {
+                // Đường dẫn đầy đủ tới hình ảnh
+                const dishImage = item.image ? `/images/${item.image}` : '/images/default-image.jpg';
+
+                const selectedItem = document.createElement('div');
+                selectedItem.classList.add('selected-item');
+                selectedItem.innerHTML = `
+                <img src="${dishImage}" alt="${item.name}" class="selected-item-image" />
+                <div class="selected-item-details">
+                    <h4>${item.name}</h4>
+                    <p>Price: ${item.price.toLocaleString()} VND</p>
+                </div>
+            `;
+                selectedItemsSection.appendChild(selectedItem);
+            });
+        }
+
+
+
+        // Function to render categories recursively
         function renderCategories(menuData) {
-            const foodCategoryList = document.getElementById('foodCategoryList');
-            foodCategoryList.innerHTML = ''; // Clear previous categories
+            foodCategoryList.innerHTML = ''; // Clear previous categories or subcategories
 
             menuData.forEach(category => {
                 const categoryItem = document.createElement('li');
                 categoryItem.textContent = category.tenNhom;
                 categoryItem.classList.add('menu-category-item');
 
-                // Render child categories if any
+                // Create an arrow for categories with children
                 if (category.children && category.children.length > 0) {
-                    categoryItem.addEventListener('click', function (event) {
-                        event.stopPropagation(); // Stop event bubbling
-                        const isExpanded = categoryItem.classList.toggle('expanded');
-                        if (isExpanded) {
-                            renderSubCategories(categoryItem, category.children); // Render subcategories
+                    const arrow = document.createElement('span');
+                    arrow.textContent = " ➤ "; // Arrow to indicate it can expand
+                    categoryItem.appendChild(arrow);
+
+                    // Attach subcategory toggle functionality
+                    categoryItem.addEventListener('click', function () {
+                        const expanded = categoryItem.classList.toggle('expanded'); // Toggle class
+
+                        if (expanded) {
+                            renderSubCategories(category.children, categoryItem); // Render subcategories
                         } else {
-                            // Collapse the subcategories
+                            // If collapsing, remove the subcategory list
                             const subCategoryList = categoryItem.querySelector('ul');
                             if (subCategoryList) {
                                 subCategoryList.remove();
                             }
                         }
+                    });
+                } else {
+                    // If no children, display the dishes directly
+                    categoryItem.addEventListener('click', function () {
+                        displayDishes(category.dishes);
                     });
                 }
 
@@ -517,8 +579,8 @@
             });
         }
 
-        // Function to render subcategories
-        function renderSubCategories(parentItem, subCategories) {
+        // Function to render subcategories recursively
+        function renderSubCategories(subCategories, parentItem) {
             let subCategoryList = parentItem.querySelector('ul');
 
             if (!subCategoryList) {
@@ -526,19 +588,35 @@
                 subCategoryList.classList.add('sub-category-list');
                 parentItem.appendChild(subCategoryList);
             }
-
-            subCategoryList.innerHTML = ''; // Clear existing subcategories
+            subCategoryList.innerHTML = ''; // Clear existing subcategories before adding new ones
 
             subCategories.forEach(subCategory => {
                 const subCategoryItem = document.createElement('li');
                 subCategoryItem.textContent = subCategory.tenNhom;
-                subCategoryItem.classList.add('menu-category-item');
+                subCategoryItem.classList.add('menu-subcategory-item');
 
-                // Add event listener for subcategory
-                subCategoryItem.addEventListener('click', function (event) {
-                    event.stopPropagation(); // Stop event from bubbling up
-                    displayDishes(subCategory.dishes); // Display dishes for this subcategory
-                });
+                if (subCategory.children && subCategory.children.length > 0) {
+                    // Recursively render subcategories if they exist
+                    subCategoryItem.addEventListener('click', function (event) {
+                        event.stopPropagation(); // Prevent triggering parent clicks
+                        const expanded = subCategoryItem.classList.toggle('expanded'); // Toggle class
+
+                        if (expanded) {
+                            renderSubCategories(subCategory.children, subCategoryItem); // Render nested subcategories
+                        } else {
+                            const innerSubCategoryList = subCategoryItem.querySelector('ul');
+                            if (innerSubCategoryList) {
+                                innerSubCategoryList.remove();
+                            }
+                        }
+                    });
+                } else {
+                    // If no further children, show dishes for the subcategory
+                    subCategoryItem.addEventListener('click', function (event) {
+                        event.stopPropagation(); // Prevent triggering parent clicks
+                        displayDishes(subCategory.dishes);
+                    });
+                }
 
                 subCategoryList.appendChild(subCategoryItem);
             });
@@ -546,7 +624,6 @@
 
         // Function to display dishes when a category or subcategory is clicked
         function displayDishes(dishes) {
-            const foodItemsList = document.getElementById('foodItemsList');
             foodItemsList.innerHTML = ''; // Clear previous items
 
             if (!dishes || dishes.length === 0) {
@@ -557,17 +634,240 @@
             dishes.forEach(dish => {
                 const foodItem = document.createElement('li');
                 foodItem.innerHTML = `
-                    <img src="${dish.hinhAnh || 'default-image.jpg'}" alt="${dish.tenMonAn}" />
-                    <div>
-                        <h4>${dish.tenMonAn}</h4>
-                        <p>${dish.moTa}</p>
-                        <p>Price: ${dish.gia} VND</p>
-                        <input type="checkbox" name="dishes[]" value="${dish.monAnId}" data-price="${dish.gia}" data-name="${dish.tenMonAn}">
-                    </div>
-                `;
+                        <img src="${dish.hinhAnh || 'default-image.jpg'}" alt="${dish.tenMonAn}" />
+                        <div>
+                            <h4>${dish.tenMonAn}</h4>
+                            <p>${dish.moTa}</p>
+                            <p>Price: ${dish.gia} VND</p>
+                            <input type="checkbox" name="dishes[]" value="${dish.monAnId}" data-price="${dish.gia}" data-name="${dish.tenMonAn}">
+                        </div>
+                    `;
+
+                // Add event listener to the checkbox
+                foodItem.querySelector('input[type="checkbox"]').addEventListener('change', function (e) {
+                    const checkbox = e.target;
+                    const dishName = checkbox.getAttribute('data-name');
+                    const dishPrice = parseInt(checkbox.getAttribute('data-price'));
+
+                    if (checkbox.checked) {
+                        addToCart(dishName, dishPrice);
+                    } else {
+                        removeFromCart(dishName, dishPrice);
+                    }
+
+                    updateTotalPrice();
+                });
+
                 foodItemsList.appendChild(foodItem);
             });
         }
-    });
 
+        // Add item to the cart
+        function addToCart(name, price) {
+            const cartItem = document.createElement('li');
+            cartItem.classList.add('cart-item');
+
+            // Remove image and only display name and price
+            cartItem.innerHTML = `
+                <div class="cart-item-content">
+                    <div class="cart-item-details">
+                        <h4>${name}</h4>
+                        <p>${price.toLocaleString()} VND</p>
+                    </div>
+                </div>
+            `;
+
+            // Add the cart item to the cart list
+            foodCartList.appendChild(cartItem);
+
+            // Add to cart array and update total price
+            cart.push({ name, price });
+            updateTotalPrice();
+        }
+        // Function to display selected items below the cart (without image)
+        function displaySelectedItems() {
+            const selectedItemsSection = document.getElementById('selectedItemsSection');
+            selectedItemsSection.innerHTML = ''; // Clear old content
+
+            cart.forEach(item => {
+                // Create a new div to display the item (no image)
+                const selectedItem = document.createElement('div');
+                selectedItem.classList.add('selected-item');
+                selectedItem.innerHTML = `
+                <div class="selected-item-details">
+                    <h4>${item.name}</h4>
+                    <p>Price: ${item.price.toLocaleString()} VND</p>
+                </div>
+            `;
+                selectedItemsSection.appendChild(selectedItem);
+            });
+        }
+
+        // Remove item from the cart
+        function removeFromCart(name, price) {
+            const cartItems = foodCartList.querySelectorAll('li');
+            cartItems.forEach(item => {
+                if (item.getAttribute('data-name') === name) {
+                    item.remove();
+                }
+            });
+
+            // Remove from cart array
+            cart = cart.filter(item => item.name !== name);
+        }
+
+        // Update total price in the cart
+        function updateTotalPrice() {
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            foodTotalPrice.textContent = total.toLocaleString();
+        }
+    });
 </script>
+<!--Xử lí đặt bàn -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const bookTableButton = document.getElementById('btn-book-table');
+        const otpModal = document.getElementById('otpModal');
+        const closeOtpModal = document.getElementById('closeOtpModal');
+        const confirmOtpButton = document.getElementById('confirmOtpButton');
+        const otpInput = document.getElementById('otpCode');
+        let otpValue = "";
+        let userEmail = ""; // Biến lưu email người dùng
+        let userHoten = ""; // Biến lưu họ tên người dùng
+
+        // Khi nhấn nút "Đặt Bàn Ngay"
+        bookTableButton.addEventListener('click', async function (event) {
+            event.preventDefault(); // Ngăn chặn submit form mặc định
+
+            // Lấy thông tin họ tên và email từ form
+            userEmail = document.getElementById('email').value;
+            userHoten = document.getElementById('name').value;
+
+            if (!userEmail || !userHoten) {
+                alert("Vui lòng nhập đầy đủ họ tên và email.");
+                return;
+            }
+
+            // Tạo đối tượng request để gửi OTP
+            const otpRequest = {
+                email: userEmail,
+                hoten: userHoten,
+            };
+
+            try {
+                // Gọi API để gửi OTP về email
+                const otpResponse = await fetch('/Booking/Otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(otpRequest),
+                });
+
+                if (otpResponse.ok) {
+                    alert('OTP đã được gửi đến email của bạn.');
+                    // Hiển thị modal nhập OTP sau khi gửi OTP thành công
+                    otpModal.style.display = 'flex';
+                } else {
+                    alert('Không thể gửi OTP. Vui lòng thử lại.');
+                }
+            } catch (error) {
+                console.error('OTP Error:', error);
+                alert('Có lỗi xảy ra khi gửi mã OTP.');
+            }
+        });
+
+        // Đóng modal khi nhấn vào nút close
+        closeOtpModal.addEventListener('click', function () {
+            otpModal.style.display = 'none';
+        });
+
+        // Khi nhấn nút "Xác Nhận" trong modal OTP
+        confirmOtpButton.addEventListener('click', async function () {
+            otpValue = otpInput.value.trim(); // Lấy giá trị OTP từ input
+
+            if (otpValue === "") {
+                alert("Vui lòng nhập mã OTP.");
+                return;
+            }
+
+            // Xác nhận OTP với API (nếu cần)
+            try {
+                // Nếu OTP hợp lệ, gọi hàm đặt bàn
+                submitBookingForm(); // Gọi hàm submit booking sau khi OTP hợp lệ
+            } catch (error) {
+                console.error('OTP Error:', error);
+                alert('Có lỗi xảy ra khi xác nhận OTP.');
+            }
+        });
+
+        // Hàm gửi yêu cầu đặt bàn sau khi OTP hợp lệ
+        // Hàm gửi yêu cầu đặt bàn sau khi OTP hợp lệ
+        async function submitBookingForm() {
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const people = document.getElementById('people').value;
+            const khuVuc = document.getElementById('khu-vuc-select').value;
+            const selectedItems = getSelectedItems(); // Lấy danh sách món ăn đã chọn
+
+            const requestData = {
+                Name: userHoten,
+                Email: userEmail,
+                Phone: phone,
+                Date: date,
+                Time: time,
+                People: parseInt(people),
+                KhuVuc: khuVuc,
+                Otp: otpValue, // Gửi OTP đã xác nhận
+                SelectedItems: selectedItems,
+            };
+
+            try {
+                const response = await fetch('/Booking/DatBan', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData),
+                });
+
+                if (response.ok) {
+                    alert('Đặt bàn thành công!');
+                    // Reload lại trang sau khi đặt bàn thành công
+                    location.reload();  // Thêm dòng này để reload lại trang sau khi đặt bàn thành công
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error:', errorData);
+                    alert('Có lỗi xảy ra khi đặt bàn.');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                alert('Đã có lỗi kết nối xảy ra.');
+            }
+        }
+
+
+        // Hàm để lấy danh sách món ăn đã chọn
+        function getSelectedItems() {
+            const selectedItems = [];
+            const checkboxes = document.querySelectorAll('input[name="dishes[]"]:checked');
+
+            checkboxes.forEach((checkbox) => {
+                const dishName = checkbox.getAttribute('data-name');
+                const dishPrice = parseFloat(checkbox.getAttribute('data-price'));
+                const dishId = parseInt(checkbox.value);
+
+                selectedItems.push({
+                    MonAnId: dishId,
+                    Name: dishName,
+                    Price: dishPrice,
+                    Quantity: 1,
+                });
+            });
+
+            return selectedItems;
+        }
+    });
+</script>
+

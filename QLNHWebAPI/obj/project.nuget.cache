@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5qXuqqg9nG8=",
+  "dgSpecHash": "AGq/iaCQD8c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doantotnghiep\\Doantotnghiep\\QLNHWebAPI\\QLNHWebAPI.csproj",
+  "projectFilePath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\QLNHWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Khoa\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Khoa\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

@@ -17,99 +17,99 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = QLNH.Admin
 build_property.RootNamespace = QLNH.Admin
-build_property.ProjectDir = D:\chung\Doantotnghiep\QLNH\QLNH.Admin\
+build_property.ProjectDir = C:\Users\Khoa\Desktop\hk1_24_25\Doan\QLNH\QLNH.Admin\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = true
-build_property.MSBuildProjectDirectory = D:\chung\Doantotnghiep\QLNH\QLNH.Admin
+build_property.MSBuildProjectDirectory = C:\Users\Khoa\Desktop\hk1_24_25\Doan\QLNH\QLNH.Admin
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Employee/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Employee/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Home/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Home/Privacy.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Kitchen/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Kitchen/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2l0Y2hlblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/NVCVSKHDatBan/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/NVCVSKHDatBan/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTlZDVlNLSERhdEJhblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/NVPVDatBan/DatMon.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/NVPVDatBan/DatMon.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTlZQVkRhdEJhblxEYXRNb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/NVPVDatBan/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/NVPVDatBan/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTlZQVkRhdEJhblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLBan/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLBan/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxCYW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLKhachHang/Create.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLKhachHang/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxLaGFjaEhhbmdcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLKhachHang/Edit.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLKhachHang/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxLaGFjaEhhbmdcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLKhachHang/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLKhachHang/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxLaGFjaEhhbmdcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLMonAn/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLMonAn/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxNb25BblxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLMonAn/Index_NMA.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLMonAn/Index_NMA.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxNb25BblxJbmRleF9OTUEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLNV/Create.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLNV/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxOVlxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLNV/Edit.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLNV/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxOVlxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/QLNV/Index.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/QLNV/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUUxOVlxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Shared/Error.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/User/Login.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/_ViewImports.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/_ViewStart.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/chung/Doantotnghiep/QLNH/QLNH.Admin/Views/Shared/_Layout.cshtml]
+[C:/Users/Khoa/Desktop/hk1_24_25/Doan/QLNH/QLNH.Admin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-idlo3ycucy

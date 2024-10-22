@@ -1,42 +1,52 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\chung\\Doantotnghiep\\QLNH\\",
+  "WorkspaceRootPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\qlnh.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\qlnh.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\views\\booking\\_booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\views\\booking\\_booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\wwwroot\\css\\style_booking.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\wwwroot\\css\\style_booking.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.admin\\controllers\\nvpvdatbancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\controllers\\nvpvdatbancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\controllers\\nvpvdatbancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.admin\\views\\nvpvdatban\\datmon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\views\\nvpvdatban\\datmon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\views\\nvpvdatban\\datmon.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\controllers\\menucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\views\\menu\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.customer\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\controllers\\bookingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\models\\menuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\models\\menuviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\wwwroot\\css\\datmon_style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\wwwroot\\css\\datmon_style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|d:\\chung\\doantotnghiep\\qlnh\\qlnh.customer\\models\\nhommonanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{686F759A-7A88-4C05-83C4-BB9DB43C24F4}|QLNH.Customer\\QLNH.Customer.csproj|solutionrelative:qlnh.customer\\models\\nhommonanviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,120 +56,186 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NVPVDatBanController.cs",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
-              "RelativeDocumentMoniker": "QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
-              "RelativeToolTip": "QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
-              "ViewState": "AQIAAKECAAAAAAAAAAAAwLkCAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T07:22:49.568Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DatMon.cshtml",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
-              "RelativeDocumentMoniker": "QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
-              "RelativeToolTip": "QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
-              "ViewState": "AQIAABAEAAAAAAAAAADwvykEAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-19T07:23:32.515Z",
+              "DocumentIndex": 0,
+              "Title": "QLNH.Admin.csproj",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
+              "RelativeDocumentMoniker": "QLNH.Admin\\QLNH.Admin.csproj",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
+              "RelativeToolTip": "QLNH.Admin\\QLNH.Admin.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-22T13:48:44.655Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "style_booking.css",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\wwwroot\\css\\style_booking.css",
-              "RelativeDocumentMoniker": "QLNH.Customer\\wwwroot\\css\\style_booking.css",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\wwwroot\\css\\style_booking.css",
-              "RelativeToolTip": "QLNH.Customer\\wwwroot\\css\\style_booking.css",
-              "ViewState": "AQIAAHgCAAAAAAAAAAAQwIECAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-17T17:34:38.288Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_Booking.cshtml",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Views\\Booking\\_Booking.cshtml",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Views\\Booking\\_Booking.cshtml",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Views\\Booking\\_Booking.cshtml",
-              "RelativeToolTip": "QLNH.Customer\\Views\\Booking\\_Booking.cshtml",
-              "ViewState": "AQIAAAsCAAAAAAAAAAAQwDsCAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-17T16:49:33.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BookingController.cs",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Controllers\\BookingController.cs",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Controllers\\BookingController.cs",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Controllers\\BookingController.cs",
-              "RelativeToolTip": "QLNH.Customer\\Controllers\\BookingController.cs",
-              "ViewState": "AQIAAFIBAAAAAAAAAAAQwHcBAAAMAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Program.cs",
+              "RelativeDocumentMoniker": "QLNH.Admin\\Program.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Program.cs",
+              "RelativeToolTip": "QLNH.Admin\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T16:49:21.95Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Views\\Menu\\Index.cshtml",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Views\\Menu\\Index.cshtml",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Views\\Menu\\Index.cshtml",
-              "RelativeToolTip": "QLNH.Customer\\Views\\Menu\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-17T16:42:11.888Z"
+              "WhenOpened": "2024-10-22T13:48:18.582Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "NhomMonAnViewModel.cs",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Models\\NhomMonAnViewModel.cs",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Models\\NhomMonAnViewModel.cs",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Models\\NhomMonAnViewModel.cs",
-              "RelativeToolTip": "QLNH.Customer\\Models\\NhomMonAnViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
+              "RelativeToolTip": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T16:34:15.296Z"
+              "WhenOpened": "2024-10-22T13:47:44.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
+              "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
+              "RelativeToolTip": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-22T13:46:44.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ToolTip": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
+              "ViewState": "AgIAAMEBAAAAAAAAAAAvwNoBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2024-10-22T13:45:33.167Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ChiTietDonHangController.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
+              "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
+              "RelativeToolTip": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T13:44:05.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DatBanController.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
+              "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
+              "RelativeToolTip": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
+              "ViewState": "AQIAAP8DAAAAAAAAAAAiwAoEAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T13:44:05.074Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "MenuViewModel.cs",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Models\\MenuViewModel.cs",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Models\\MenuViewModel.cs",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Models\\MenuViewModel.cs",
-              "RelativeToolTip": "QLNH.Customer\\Models\\MenuViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Title": "datmon_style.css",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\wwwroot\\css\\datmon_style.css",
+              "RelativeDocumentMoniker": "QLNH.Admin\\wwwroot\\css\\datmon_style.css",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\wwwroot\\css\\datmon_style.css",
+              "RelativeToolTip": "QLNH.Admin\\wwwroot\\css\\datmon_style.css",
+              "ViewState": "AQIAAMoAAAAAAAAAAAAqwOkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-10-22T13:44:05.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DatMon.cshtml",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
+              "RelativeDocumentMoniker": "QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
+              "RelativeToolTip": "QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
+              "ViewState": "AQIAAHIBAAAAAAAAAAAqwHkBAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-10-22T13:44:05.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NVPVDatBanController.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
+              "RelativeDocumentMoniker": "QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
+              "RelativeToolTip": "QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
+              "ViewState": "AgIAAO4BAAAAAAAAAAAQwAUBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T16:31:33.775Z"
+              "WhenOpened": "2024-10-22T13:44:05.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DonHangModelView.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
+              "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
+              "RelativeToolTip": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAkwBkAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T13:44:04.976Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "MenuController.cs",
-              "DocumentMoniker": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Controllers\\MenuController.cs",
-              "RelativeDocumentMoniker": "QLNH.Customer\\Controllers\\MenuController.cs",
-              "ToolTip": "D:\\chung\\Doantotnghiep\\QLNH\\QLNH.Customer\\Controllers\\MenuController.cs",
-              "RelativeToolTip": "QLNH.Customer\\Controllers\\MenuController.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAAIwDoAAAAFAAAA",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\appsettings.json",
+              "RelativeDocumentMoniker": "QLNH.Admin\\appsettings.json",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\appsettings.json",
+              "RelativeToolTip": "QLNH.Admin\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-22T13:44:05.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookingController.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Customer\\Controllers\\BookingController.cs",
+              "RelativeDocumentMoniker": "QLNH.Customer\\Controllers\\BookingController.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Customer\\Controllers\\BookingController.cs",
+              "RelativeToolTip": "QLNH.Customer\\Controllers\\BookingController.cs",
+              "ViewState": "AQIAAJ0AAAAAAAAAAAAwwJoBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-17T16:26:31.178Z"
+              "WhenOpened": "2024-10-22T13:44:05.126Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 14,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             }
           ]
         }

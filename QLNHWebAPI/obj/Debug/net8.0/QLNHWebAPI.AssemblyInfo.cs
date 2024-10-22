@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QLNHWebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1357cadcc6cdb02c133ad7875afc4047fbd5da5a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84b813a2ded9fb830f09cb1f34acd9e5b954892d")]
 [assembly: System.Reflection.AssemblyProductAttribute("QLNHWebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QLNHWebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
