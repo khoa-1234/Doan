@@ -26,6 +26,4 @@ public partial class Transaction
     public string? MoMoResponse { get; set; }
 
     public virtual DonHang DonHang { get; set; } = null!;
-
-    public virtual ICollection<MoMoNotification> MoMoNotifications { get; set; } = new List<MoMoNotification>();
 }

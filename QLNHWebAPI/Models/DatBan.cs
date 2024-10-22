@@ -46,4 +46,6 @@ public partial class DatBan
     public virtual KhuVuc? KhuVuc { get; set; }
 
     public virtual NhanVien? NhanVienMoBan { get; set; }
+
+    public virtual ICollection<TienCoc> TienCocs { get; set; } = new List<TienCoc>();
 }

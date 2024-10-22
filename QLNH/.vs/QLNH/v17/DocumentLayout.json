@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{02A26EE2-61EA-46E1-A3EA-CBBF80335E5A}|..\\QLNHWebAPI\\QLNHWebAPI.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnhwebapi\\models\\qlnhcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|c:\\users\\khoa\\desktop\\hk1_24_25\\doan\\qlnh\\qlnh.admin\\qlnh.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{3775885C-48BB-4BFD-ABB0-F8358EAFDB6E}|QLNH.Admin\\QLNH.Admin.csproj|solutionrelative:qlnh.admin\\qlnh.admin.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -65,6 +68,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "QlnhContext.cs",
+              "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\Models\\QlnhContext.cs",
+              "RelativeDocumentMoniker": "..\\QLNHWebAPI\\Models\\QlnhContext.cs",
+              "ToolTip": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNHWebAPI\\Models\\QlnhContext.cs",
+              "RelativeToolTip": "..\\QLNHWebAPI\\Models\\QlnhContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T15:07:11.572Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "QLNH.Admin.csproj",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\QLNH.Admin.csproj",
               "RelativeDocumentMoniker": "QLNH.Admin\\QLNH.Admin.csproj",
@@ -77,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Program.cs",
               "RelativeDocumentMoniker": "QLNH.Admin\\Program.cs",
@@ -89,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
               "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Program.cs",
@@ -101,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
               "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\appsettings.json",
@@ -113,7 +129,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Microsoft.NET.Sdk.StaticWebAssets.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\dotnet\\sdk\\8.0.400\\Sdks\\Microsoft.NET.Sdk.StaticWebAssets\\targets\\Microsoft.NET.Sdk.StaticWebAssets.targets",
@@ -125,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ChiTietDonHangController.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
               "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\ChiTietDonHangController.cs",
@@ -137,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "DatBanController.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
               "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\Controllers\\DatBanController.cs",
@@ -149,7 +165,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "datmon_style.css",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\wwwroot\\css\\datmon_style.css",
               "RelativeDocumentMoniker": "QLNH.Admin\\wwwroot\\css\\datmon_style.css",
@@ -161,7 +177,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "DatMon.cshtml",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
               "RelativeDocumentMoniker": "QLNH.Admin\\Views\\NVPVDatBan\\DatMon.cshtml",
@@ -173,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "NVPVDatBanController.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
               "RelativeDocumentMoniker": "QLNH.Admin\\Controllers\\NVPVDatBanController.cs",
@@ -185,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "DonHangModelView.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
               "RelativeDocumentMoniker": "..\\..\\test\\Doantotnghiep\\QLNHWebAPI\\ViewModel\\DonHangModelView.cs",
@@ -197,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Admin\\appsettings.json",
               "RelativeDocumentMoniker": "QLNH.Admin\\appsettings.json",
@@ -209,7 +225,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "BookingController.cs",
               "DocumentMoniker": "C:\\Users\\Khoa\\Desktop\\hk1_24_25\\Doan\\QLNH\\QLNH.Customer\\Controllers\\BookingController.cs",
               "RelativeDocumentMoniker": "QLNH.Customer\\Controllers\\BookingController.cs",

@@ -43,8 +43,6 @@ public partial class QlnhContext : DbContext
 
     public virtual DbSet<LichLamViec> LichLamViecs { get; set; }
 
-    public virtual DbSet<MoMoNotification> MoMoNotifications { get; set; }
-
     public virtual DbSet<MonAn> MonAns { get; set; }
 
     public virtual DbSet<MonAnHinhAnh> MonAnHinhAnhs { get; set; }
@@ -60,6 +58,8 @@ public partial class QlnhContext : DbContext
     public virtual DbSet<QuyTrinhNauAn> QuyTrinhNauAns { get; set; }
 
     public virtual DbSet<ThanhToan> ThanhToans { get; set; }
+
+    public virtual DbSet<TienCoc> TienCocs { get; set; }
 
     public virtual DbSet<Transaction> Transactions { get; set; }
 
@@ -94,7 +94,7 @@ public partial class QlnhContext : DbContext
 
             entity.HasOne(d => d.KhuVuc).WithMany(p => p.Bans)
                 .HasForeignKey(d => d.KhuVucId)
-                .HasConstraintName("FK__Ban__KhuVucId__0C85DE4D");
+                .HasConstraintName("FK__Ban__KhuVucId__71D1E811");
         });
 
         modelBuilder.Entity<CaLamViec>(entity =>
@@ -229,7 +229,7 @@ public partial class QlnhContext : DbContext
 
             entity.HasOne(d => d.KhuVuc).WithMany(p => p.DatBans)
                 .HasForeignKey(d => d.KhuVucId)
-                .HasConstraintName("FK__DatBan__KhuVucId__0D7A0286");
+                .HasConstraintName("FK__DatBan__KhuVucId__7A672E12");
 
             entity.HasOne(d => d.NhanVienMoBan).WithMany(p => p.DatBans)
                 .HasForeignKey(d => d.NhanVienMoBanId)
@@ -329,7 +329,7 @@ public partial class QlnhContext : DbContext
 
         modelBuilder.Entity<KhuVuc>(entity =>
         {
-            entity.HasKey(e => e.KhuVucId).HasName("PK__KhuVuc__201CA7F9DD57A64E");
+            entity.HasKey(e => e.KhuVucId).HasName("PK__KhuVuc__201CA7F9DDAF63BA");
 
             entity.ToTable("KhuVuc");
 
@@ -372,22 +372,6 @@ public partial class QlnhContext : DbContext
                 .HasForeignKey(d => d.NhanVienId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_LichLamViec_NhanVien");
-        });
-
-        modelBuilder.Entity<MoMoNotification>(entity =>
-        {
-            entity.HasKey(e => e.NotificationId).HasName("PK__MoMoNoti__20CF2E12BFAF53A6");
-
-            entity.HasIndex(e => e.TransactionId, "IX_MoMoNotifications_TransactionId");
-
-            entity.Property(e => e.ReceivedAt)
-                .HasDefaultValueSql("(getdate())")
-                .HasColumnType("datetime");
-
-            entity.HasOne(d => d.Transaction).WithMany(p => p.MoMoNotifications)
-                .HasForeignKey(d => d.TransactionId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_MoMoNotifications_Transactions");
         });
 
         modelBuilder.Entity<MonAn>(entity =>
@@ -533,6 +517,24 @@ public partial class QlnhContext : DbContext
             entity.HasOne(d => d.DonHang).WithMany(p => p.ThanhToans)
                 .HasForeignKey(d => d.DonHangId)
                 .HasConstraintName("FK__ThanhToan__DonHa__693CA210");
+        });
+
+        modelBuilder.Entity<TienCoc>(entity =>
+        {
+            entity.HasKey(e => e.TienCocId).HasName("PK__TienCoc__8B0B383D1FE1F591");
+
+            entity.ToTable("TienCoc");
+
+            entity.Property(e => e.MaGiaoDich).HasMaxLength(100);
+            entity.Property(e => e.NgayThanhToan).HasColumnType("datetime");
+            entity.Property(e => e.PhuongThucThanhToan).HasMaxLength(50);
+            entity.Property(e => e.SoTien).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.TrangThai).HasMaxLength(50);
+
+            entity.HasOne(d => d.DatBan).WithMany(p => p.TienCocs)
+                .HasForeignKey(d => d.DatBanId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Ban_TienCoc");
         });
 
         modelBuilder.Entity<Transaction>(entity =>
